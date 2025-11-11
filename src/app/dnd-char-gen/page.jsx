@@ -5,6 +5,15 @@ import { useCharacterData } from '@/lib/hooks/useCharacterData';
 import { getUsedBooks, checkBookSpecial } from '@/lib/utils/books';
 import Generate from '@/lib/generators/character';
 import CardRenderer from '@/lib/utils/cardRenderer';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { LockKeyholeIcon } from '@/components/ui/icons/lucide-lock-keyhole';
+import { LockKeyholeOpenIcon } from '@/components/ui/icons/lucide-lock-keyhole-open';
 import './dnd-char-gen.css';
 
 /**
@@ -102,6 +111,12 @@ export default function CharacterGeneratorPage() {
   const [characterType, setCharacterType] = useState('either');
   const [cardType, setCardType] = useState('personality'); // personality, characteristics, or plaintext
   const [uploadedImage, setUploadedImage] = useState(null); // Uploaded character image
+
+  // Dropdown selections
+  const [selectedGender, setSelectedGender] = useState('Random');
+  const [selectedRace, setSelectedRace] = useState('Random');
+  const [selectedClass, setSelectedClass] = useState('Random');
+  const [selectedBackground, setSelectedBackground] = useState('Random');
 
   // Refs
   const canvasRef = useRef(null);
@@ -265,10 +280,11 @@ export default function CharacterGeneratorPage() {
     else if (document.getElementById('15x-weighted-radio')?.checked) raceMode = 'weighted15';
     else if (document.getElementById('20x-weighted-radio')?.checked) raceMode = 'weighted20';
 
-    const raceMenuValue = document.getElementById('racemenu')?.value || 'Random';
-    const genderMenuValue = document.getElementById('gendermenu')?.value || 'Random';
-    const classMenuValue = document.getElementById('classmenu')?.value || 'Random';
-    const backgroundMenuValue = document.getElementById('backgroundmenu')?.value || 'Random';
+    // Use state values for dropdowns
+    const raceMenuValue = selectedRace;
+    const genderMenuValue = selectedGender;
+    const classMenuValue = selectedClass;
+    const backgroundMenuValue = selectedBackground;
     const nameInputValue = document.getElementById('name-input')?.value || '';
 
     return {
@@ -567,47 +583,44 @@ export default function CharacterGeneratorPage() {
           <hr />
 
           {/* Main Action Buttons and Canvas */}
-          <div style={{ textAlign: 'center' }}>
-            <button type="button" className="dnd-button" onClick={handleGenerateCharacter}>
-              Generate Character
-            </button>
-            <button type="button" className="dnd-button">
-              Randomize Card
-            </button>
-            <br />
-            <br />
+          <div className="text-center space-y-4">
+            <div className="flex gap-2 justify-center">
+              <Button onClick={handleGenerateCharacter} size="lg">
+                Generate Character
+              </Button>
+              <Button size="lg">
+                Randomize Card
+              </Button>
+            </div>
 
             {/* Image Upload Section */}
-            <div style={{ marginBottom: '20px' }}>
-              <label className="dnd-label">
-                <b>Character Portrait:</b>
-                <br />
-                <input
+            <Card className="max-w-md mx-auto">
+              <CardHeader>
+                <CardTitle className="text-base">Character Portrait</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Input
                   type="file"
                   accept="image/*"
                   onChange={handleImageUpload}
-                  className="dnd-input"
-                  style={{ width: 'auto', marginTop: '5px' }}
+                  className="cursor-pointer"
                 />
-              </label>
-              {uploadedImage && (
-                <>
-                  <br />
-                  <button
-                    type="button"
-                    className="dnd-button"
-                    onClick={handleClearImage}
-                    style={{ marginTop: '5px' }}
-                  >
-                    Clear Image
-                  </button>
-                  <br />
-                  <small style={{ color: '#666' }}>Image uploaded successfully</small>
-                </>
-              )}
-            </div>
+                {uploadedImage && (
+                  <div className="space-y-2">
+                    <Button
+                      variant="destructive"
+                      onClick={handleClearImage}
+                      className="w-full"
+                    >
+                      Clear Image
+                    </Button>
+                    <p className="text-sm text-muted-foreground">Image uploaded successfully</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
 
-            <div id="cardcontainer" style={{ display: cardType === 'plaintext' ? 'none' : 'block' }}>
+            <div id="cardcontainer" style={{ display: cardType === 'plaintext' ? 'none' : 'block', justifyItems: 'center'}}>
               <canvas ref={canvasRef} id="canvas" width="612" height="792" className="dnd-canvas"></canvas>
               <div>
                 <a id="sourcelink" href="">
@@ -796,26 +809,22 @@ export default function CharacterGeneratorPage() {
 
           {/* Lock Buttons */}
           <div style={{ textAlign: 'center' }}>
-            <button
-              className="lock-button"
-              id="all-lock-button"
-              style={{ width: '4rem' }}
+            <Button
+              variant="ghost"
               onClick={lockAll}
             >
-              🔒 All
-            </button>
-            <button
-              className="lock-button"
-              id="none-lock-button"
-              style={{ width: '4rem' }}
+              <LockKeyholeIcon/> All
+            </Button>
+            <Button
+              variant="ghost"
               onClick={unlockAll}
             >
-              🔓 All
-            </button>
+              <LockKeyholeOpenIcon/> All
+            </Button>
             <br />
-            <button type="button" className="dnd-button" onClick={handleGenerateCharacter}>
+            <Button size="lg" onClick={handleGenerateCharacter}>
               Generate Character
-            </button>
+            </Button>
           </div>
           <br />
 
@@ -853,20 +862,20 @@ export default function CharacterGeneratorPage() {
           <div style={{ textAlign: 'center' }}>
             <div className="npc-show row" style={{ maxWidth: '30rem', margin: 'auto' }}>
               <div className="col-12 col-sm-6">
-                <button className="lock-button" onClick={() => toggleLock('traits')}>
-                  {locks.traits ? '🔒' : '🔓'}
-                </button>
-                <button type="button" className="dnd-button">
+                <Button variant="ghost" onClick={() => toggleLock('traits')}>
+                  {locks.traits ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
+                </Button>
+                <Button type="button" className="dnd-button">
                   Generate Description
-                </button>
+                </Button>
               </div>
               <div className="col-12 col-sm-6">
-                <button className="lock-button" onClick={() => toggleLock('occupation')}>
-                  {locks.occupation ? '🔒' : '🔓'}
-                </button>
-                <button type="button" className="dnd-button">
+                <Button variant="ghost" onClick={() => toggleLock('occupation')}>
+                  {locks.occupation ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
+                </Button>
+                <Button type="button" className="dnd-button">
                   Generate Occupation
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -883,25 +892,31 @@ export default function CharacterGeneratorPage() {
                   style={{ maxWidth: '20rem' }}
                   className="dnd-input"
                 />
-                <button type="button" className="dnd-button" onClick={handleGenerateName}>
+                <Button type="button" className="dnd-button" onClick={handleGenerateName}>
                   Generate
-                </button>
+                </Button>
               </div>
               <br className="small-only-br" />
-              <div>
-                <label htmlFor="gendermenu">
-                  <b>Gender: </b>
-                </label>
-                <br className="small-only-br" />
-                <select className="dnd-select" id="gendermenu">
-                  <option value="Random">Random</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Nonbinary or Unknown">Nonbinary or Unknown</option>
-                </select>
-                <button type="button" className="dnd-button" onClick={handleGenerateGender}>
-                  Generate
-                </button>
+              <div className="space-y-2">
+                <Label htmlFor="gendermenu">
+                  <b>Gender</b>
+                </Label>
+                <div className="flex gap-2">
+                  <Select value={selectedGender} onValueChange={setSelectedGender}>
+                    <SelectTrigger id="gendermenu" className="w-[200px]">
+                      <SelectValue placeholder="Select gender" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Random">Random</SelectItem>
+                      <SelectItem value="Male">Male</SelectItem>
+                      <SelectItem value="Female">Female</SelectItem>
+                      <SelectItem value="Nonbinary or Unknown">Nonbinary or Unknown</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Button type="button" variant="default" onClick={handleGenerateGender}>
+                    Generate
+                  </Button>
+                </div>
               </div>
             </div>
             <br />
@@ -916,26 +931,30 @@ export default function CharacterGeneratorPage() {
           {/* Character Details Columns */}
           <div id="character-columns" className="row">
             <div className="col-12 col-lg-4 pc-show" id="class-section">
-              <div style={{ textAlign: 'center' }}>
-                <label htmlFor="classmenu">
-                  <b>Class: </b>
-                </label>
-                <br className="sometimes-br" />
-                <button className="lock-button" onClick={() => toggleLock('class')}>
-                  {locks.class ? '🔒' : '🔓'}
-                </button>
-                <select className="dnd-select" id="classmenu">
-                  {classOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-                <button type="button" className="dnd-button" onClick={handleGenerateClass}>
-                  Generate
-                </button>
-                <br />
-                <br />
+              <div className="flex flex-col items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="classmenu"><b>Class</b></Label>
+                  <Button variant="default" size="icon" onClick={() => toggleLock('class')}>
+                    {locks.class ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
+                  </Button>
+                </div>
+                <div className="flex gap-2">
+                  <Select value={selectedClass} onValueChange={setSelectedClass}>
+                    <SelectTrigger id="classmenu" className="w-[200px]">
+                      <SelectValue placeholder="Select class" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {classOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Button type="button" variant="outline" onClick={handleGenerateClass}>
+                    Generate
+                  </Button>
+                </div>
               </div>
               <h3>
                 Class: <span id="classheader">{character.Class?.name || ''}</span>
@@ -947,26 +966,30 @@ export default function CharacterGeneratorPage() {
               className={characterType === 'npc' ? 'col-12' : 'col-12 col-lg-4'}
               id="race-section"
             >
-              <div style={{ textAlign: 'center' }}>
-                <label htmlFor="racemenu">
-                  <b>Race: </b>
-                </label>
-                <br className="sometimes-br" />
-                <button className="lock-button" onClick={() => toggleLock('race')}>
-                  {locks.race ? '🔒' : '🔓'}
-                </button>
-                <select className="dnd-select" id="racemenu">
-                  {raceOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-                <button type="button" className="dnd-button" onClick={handleGenerateRace}>
-                  Generate
-                </button>
-                <br />
-                <br />
+              <div className="flex flex-col items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="racemenu"><b>Race</b></Label>
+                  <Button variant="ghost" size="icon" onClick={() => toggleLock('race')}>
+                    {locks.race ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
+                  </Button>
+                </div>
+                <div className="flex gap-2">
+                  <Select value={selectedRace} onValueChange={setSelectedRace}>
+                    <SelectTrigger id="racemenu" className="w-[200px]">
+                      <SelectValue placeholder="Select race" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {raceOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Button type="button" variant="outline" onClick={handleGenerateRace}>
+                    Generate
+                  </Button>
+                </div>
               </div>
               <h3>
                 Race: <span id="raceheader">{character.Race?.name || ''}</span>
@@ -975,26 +998,30 @@ export default function CharacterGeneratorPage() {
               <br />
             </div>
             <div className="col-12 col-lg-4 pc-show" id="background-section">
-              <div style={{ textAlign: 'center' }}>
-                <label htmlFor="backgroundmenu">
-                  <b>Background: </b>
-                </label>
-                <br className="sometimes-br" />
-                <button className="lock-button" onClick={() => toggleLock('background')}>
-                  {locks.background ? '🔒' : '🔓'}
-                </button>
-                <select className="dnd-select" id="backgroundmenu">
-                  {backgroundOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-                <button type="button" className="dnd-button" onClick={handleGenerateBackground}>
-                  Generate
-                </button>
-                <br />
-                <br />
+              <div className="flex flex-col items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="backgroundmenu"><b>Background</b></Label>
+                  <Button variant="ghost" onClick={() => toggleLock('background')}>
+                    {locks.background ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
+                  </Button>
+                </div>
+                <div className="flex gap-2">
+                  <Select value={selectedBackground} onValueChange={setSelectedBackground}>
+                    <SelectTrigger id="backgroundmenu" className="w-[200px]">
+                      <SelectValue placeholder="Select background" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {backgroundOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <Button type="button" variant="outline" onClick={handleGenerateBackground}>
+                    Generate
+                  </Button>
+                </div>
               </div>
               <h3>
                 Background: <span id="backgroundheader">{character.Background?.name || ''}</span>
@@ -1009,12 +1036,12 @@ export default function CharacterGeneratorPage() {
           {/* Life Section */}
           <div>
             <h3 style={{ display: 'inline', marginRight: '30px' }}>Life:</h3>
-            <button className="lock-button" onClick={() => toggleLock('life')}>
-              {locks.life ? '🔒' : '🔓'}
-            </button>
-            <button type="button" className="dnd-button">
+            <Button variant="ghost" onClick={() => toggleLock('life')}>
+              {locks.life ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
+            </Button>
+            <Button type="button" className="dnd-button">
               Generate
-            </button>
+            </Button>
             <br />
             <br />
             <ul id="lifesection" style={{ minHeight: '45rem' }}>
