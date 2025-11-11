@@ -19,7 +19,7 @@ html {
   max-width: 1000px;
   margin: 0 auto;
   line-height: 125%;
-  background-image: url('/dndimages/papyr.jpg');
+  background-color: #fff;
   border-style: none;
   min-height: 100%;
   color: #000000;
@@ -270,7 +270,7 @@ html {
   }
 
   .char-gen-body {
-    background-image: url('/dndimages/chargenbkg.jpg');
+    background-color: #fff;
   }
 }
 

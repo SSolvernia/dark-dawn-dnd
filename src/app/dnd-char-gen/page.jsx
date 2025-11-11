@@ -118,6 +118,10 @@ export default function CharacterGeneratorPage() {
   const [selectedClass, setSelectedClass] = useState('Random');
   const [selectedBackground, setSelectedBackground] = useState('Random');
 
+  // Radio button selections
+  const [raceRandomizer, setRaceRandomizer] = useState('normal');
+  const [ethnicityType, setEthnicityType] = useState('standard');
+
   // Refs
   const canvasRef = useRef(null);
 
@@ -267,18 +271,13 @@ export default function CharacterGeneratorPage() {
   const buildContext = () => {
     if (!data) return null;
 
-    const ethnicityOption = document.getElementById('standard-radio')?.checked
-      ? 'standard'
-      : document.getElementById('real-radio')?.checked
-      ? 'real'
-      : Math.random() < 0.5
-      ? 'standard'
-      : 'real';
+    // Use state values for ethnicity type (with fallback for 'both' option)
+    const ethnicityOption = ethnicityType === 'both'
+      ? Math.random() < 0.5 ? 'standard' : 'real'
+      : ethnicityType;
 
-    let raceMode = 'normal';
-    if (document.getElementById('weighted-radio')?.checked) raceMode = 'weighted';
-    else if (document.getElementById('15x-weighted-radio')?.checked) raceMode = 'weighted15';
-    else if (document.getElementById('20x-weighted-radio')?.checked) raceMode = 'weighted20';
+    // Use state value for race mode
+    const raceMode = raceRandomizer;
 
     // Use state values for dropdowns
     const raceMenuValue = selectedRace;
@@ -441,141 +440,109 @@ export default function CharacterGeneratorPage() {
           {/* Book Selection Grid */}
           <div className="booklist row">
             <div className="col-12 col-md-6">
-              <div>
-                <label>
-                  <b>
-                    <input id="PHBbox" type="checkbox" disabled checked readOnly />{' '}
-                    Player&apos;s Handbook <sup>(PHB)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="PHBbox" disabled checked />
+                <Label htmlFor="PHBbox" className="font-bold cursor-pointer">
+                  Player&apos;s Handbook <sup>(PHB)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="VGtMbox" type="checkbox" defaultChecked />{' '}
-                    Volo&apos;s Guide to Monsters <sup>(VGtM)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="VGtMbox" defaultChecked />
+                <Label htmlFor="VGtMbox" className="font-bold cursor-pointer">
+                  Volo&apos;s Guide to Monsters <sup>(VGtM)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="MRbox" type="checkbox" defaultChecked />{' '}
-                    Volo&apos;s Guide Monstrous Races <sup>(MR)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="MRbox" defaultChecked />
+                <Label htmlFor="MRbox" className="font-bold cursor-pointer">
+                  Volo&apos;s Guide Monstrous Races <sup>(MR)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="XGtEbox" type="checkbox" defaultChecked />{' '}
-                    Xanathar&apos;s Guide to Everything <sup>(XGtE)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="XGtEbox" defaultChecked />
+                <Label htmlFor="XGtEbox" className="font-bold cursor-pointer">
+                  Xanathar&apos;s Guide to Everything <sup>(XGtE)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="MToFbox" type="checkbox" defaultChecked />{' '}
-                    Mordenkainen&apos;s Tome of Foes <sup>(MToF)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="MToFbox" defaultChecked />
+                <Label htmlFor="MToFbox" className="font-bold cursor-pointer">
+                  Mordenkainen&apos;s Tome of Foes <sup>(MToF)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="TCoEbox" type="checkbox" defaultChecked />{' '}
-                    Tasha&apos;s Cauldron of Everything <sup>(TCoE)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="TCoEbox" defaultChecked />
+                <Label htmlFor="TCoEbox" className="font-bold cursor-pointer">
+                  Tasha&apos;s Cauldron of Everything <sup>(TCoE)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="EEbox" type="checkbox" defaultChecked />{' '}
-                    Elemental Evil Player&apos;s Companion <sup>(EE)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="EEbox" defaultChecked />
+                <Label htmlFor="EEbox" className="font-bold cursor-pointer">
+                  Elemental Evil Player&apos;s Companion <sup>(EE)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="SCAGbox" type="checkbox" defaultChecked />{' '}
-                    Sword Coast Adventurer&apos;s Guide <sup>(SCAG)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="SCAGbox" defaultChecked />
+                <Label htmlFor="SCAGbox" className="font-bold cursor-pointer">
+                  Sword Coast Adventurer&apos;s Guide <sup>(SCAG)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="DMGbox" type="checkbox" /> Dungeon Master&apos;s Guide{' '}
-                    <sup>(DMG)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="DMGbox" />
+                <Label htmlFor="DMGbox" className="font-bold cursor-pointer">
+                  Dungeon Master&apos;s Guide <sup>(DMG)</sup>
+                </Label>
               </div>
             </div>
             <div className="col-12 col-md-6">
-              <div>
-                <label>
-                  <b>
-                    <input id="Modbox" type="checkbox" /> Adventure Modules <sup>(Mod)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="Modbox" />
+                <Label htmlFor="Modbox" className="font-bold cursor-pointer">
+                  Adventure Modules <sup>(Mod)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="EBRbox" type="checkbox" /> Eberron: Rising from the Last War{' '}
-                    <sup>(EBR)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="EBRbox" />
+                <Label htmlFor="EBRbox" className="font-bold cursor-pointer">
+                  Eberron: Rising from the Last War <sup>(EBR)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="EGtWbox" type="checkbox" /> Explorer&apos;s Guide to Wildemount{' '}
-                    <sup>(EGtW)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="EGtWbox" />
+                <Label htmlFor="EGtWbox" className="font-bold cursor-pointer">
+                  Explorer&apos;s Guide to Wildemount <sup>(EGtW)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="GGtRbox" type="checkbox" /> Guildmaster&apos;s Guide to Ravnica{' '}
-                    <sup>(GGtR)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="GGtRbox" />
+                <Label htmlFor="GGtRbox" className="font-bold cursor-pointer">
+                  Guildmaster&apos;s Guide to Ravnica <sup>(GGtR)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="MOoTbox" type="checkbox" /> Mythic Odysseys of Theros{' '}
-                    <sup>(MOoT)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="MOoTbox" />
+                <Label htmlFor="MOoTbox" className="font-bold cursor-pointer">
+                  Mythic Odysseys of Theros <sup>(MOoT)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="AIbox" type="checkbox" /> Acquisitions Incorporated{' '}
-                    <sup>(AI)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="AIbox" />
+                <Label htmlFor="AIbox" className="font-bold cursor-pointer">
+                  Acquisitions Incorporated <sup>(AI)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="Otherbox" type="checkbox" /> Other Notable Content{' '}
-                    <sup>(Other)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="Otherbox" />
+                <Label htmlFor="Otherbox" className="font-bold cursor-pointer">
+                  Other Notable Content <sup>(Other)</sup>
+                </Label>
               </div>
-              <div>
-                <label>
-                  <b>
-                    <input id="UAbox" type="checkbox" /> Unearthed Arcana <sup>(UA)</sup>
-                  </b>
-                </label>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox id="UAbox" />
+                <Label htmlFor="UAbox" className="font-bold cursor-pointer">
+                  Unearthed Arcana <sup>(UA)</sup>
+                </Label>
               </div>
             </div>
           </div>
@@ -648,159 +615,110 @@ export default function CharacterGeneratorPage() {
           <div className="row radio-row">
             <div className="col-12 col-sm-6 col-lg-3">
               <b>Show:</b>
-              <div>
-                <label>
-                  <input
-                    id="personality-radio"
-                    type="radio"
-                    name="show-button"
-                    value="personality"
-                    checked={cardType === 'personality'}
-                    onChange={(e) => setCardType(e.target.value)}
-                  />{' '}
-                  Personality{' '}
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input
-                    id="characteristics-radio"
-                    type="radio"
-                    name="show-button"
-                    value="characteristics"
-                    checked={cardType === 'characteristics'}
-                    onChange={(e) => setCardType(e.target.value)}
-                  />{' '}
-                  Characteristics{' '}
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input
-                    id="empty-radio"
-                    type="radio"
-                    name="show-button"
-                    value="empty"
-                    checked={cardType === 'empty'}
-                    onChange={(e) => setCardType(e.target.value)}
-                  />{' '}
-                  Empty Card{' '}
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input
-                    id="plaintext-radio"
-                    type="radio"
-                    name="show-button"
-                    value="plaintext"
-                    checked={cardType === 'plaintext'}
-                    onChange={(e) => setCardType(e.target.value)}
-                  />{' '}
-                  Plain Text{' '}
-                </label>
-              </div>
+              <RadioGroup value={cardType} onValueChange={setCardType} className="mt-2">
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="personality" id="personality-radio" />
+                  <Label htmlFor="personality-radio" className="cursor-pointer">
+                    Personality
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="characteristics" id="characteristics-radio" />
+                  <Label htmlFor="characteristics-radio" className="cursor-pointer">
+                    Characteristics
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="empty" id="empty-radio" />
+                  <Label htmlFor="empty-radio" className="cursor-pointer">
+                    Empty Card
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="plaintext" id="plaintext-radio" />
+                  <Label htmlFor="plaintext-radio" className="cursor-pointer">
+                    Plain Text
+                  </Label>
+                </div>
+              </RadioGroup>
               <br />
             </div>
             <div className="col-12 col-sm-6 col-lg-3">
               <b>Character Type:</b>
-              <div>
-                <label>
-                  <input
-                    id="either-radio"
-                    type="radio"
-                    name="character-type-button"
-                    value="either"
-                    checked={characterType === 'either'}
-                    onChange={(e) => setCharacterType(e.target.value)}
-                  />{' '}
-                  Either{' '}
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input
-                    id="pc-radio"
-                    type="radio"
-                    name="character-type-button"
-                    value="pc"
-                    checked={characterType === 'pc'}
-                    onChange={(e) => setCharacterType(e.target.value)}
-                  />{' '}
-                  Adventurer{' '}
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input
-                    id="npc-radio"
-                    type="radio"
-                    name="character-type-button"
-                    value="npc"
-                    checked={characterType === 'npc'}
-                    onChange={(e) => setCharacterType(e.target.value)}
-                  />{' '}
-                  Civilian{' '}
-                </label>
-              </div>
+              <RadioGroup value={characterType} onValueChange={setCharacterType} className="mt-2">
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="either" id="either-radio" />
+                  <Label htmlFor="either-radio" className="cursor-pointer">
+                    Either
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="pc" id="pc-radio" />
+                  <Label htmlFor="pc-radio" className="cursor-pointer">
+                    Adventurer
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="npc" id="npc-radio" />
+                  <Label htmlFor="npc-radio" className="cursor-pointer">
+                    Civilian
+                  </Label>
+                </div>
+              </RadioGroup>
               <br />
             </div>
             <div className="col-12 col-sm-6 col-lg-3">
               <b>Race Randomizer:</b>
-              <div>
-                <label>
-                  <input
-                    id="normal-radio"
-                    type="radio"
-                    name="race-randomizer-button"
-                    defaultChecked
-                  />{' '}
-                  Normal{' '}
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input id="weighted-radio" type="radio" name="race-randomizer-button" />{' '}
-                  Weighted{' '}
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input id="15x-weighted-radio" type="radio" name="race-randomizer-button" />{' '}
-                  Weighted x1.5{' '}
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input id="20x-weighted-radio" type="radio" name="race-randomizer-button" />{' '}
-                  Weighted x2{' '}
-                </label>
-              </div>
+              <RadioGroup value={raceRandomizer} onValueChange={setRaceRandomizer} className="mt-2">
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="normal" id="normal-radio" />
+                  <Label htmlFor="normal-radio" className="cursor-pointer">
+                    Normal
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="weighted" id="weighted-radio" />
+                  <Label htmlFor="weighted-radio" className="cursor-pointer">
+                    Weighted
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="weighted15" id="15x-weighted-radio" />
+                  <Label htmlFor="15x-weighted-radio" className="cursor-pointer">
+                    Weighted x1.5
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="weighted20" id="20x-weighted-radio" />
+                  <Label htmlFor="20x-weighted-radio" className="cursor-pointer">
+                    Weighted x2
+                  </Label>
+                </div>
+              </RadioGroup>
               <br />
             </div>
             <div className="col-12 col-sm-6 col-lg-3">
               <b>Human Ethnicities:</b>
-              <div>
-                <label>
-                  <input
-                    id="standard-radio"
-                    type="radio"
-                    name="ethnicity-button"
-                    defaultChecked
-                  />{' '}
-                  Standard{' '}
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input id="real-radio" type="radio" name="ethnicity-button" /> Real{' '}
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input id="both-radio" type="radio" name="ethnicity-button" /> Both{' '}
-                </label>
-              </div>
+              <RadioGroup value={ethnicityType} onValueChange={setEthnicityType} className="mt-2">
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="standard" id="standard-radio" />
+                  <Label htmlFor="standard-radio" className="cursor-pointer">
+                    Standard
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="real" id="real-radio" />
+                  <Label htmlFor="real-radio" className="cursor-pointer">
+                    Real
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2 mb-2">
+                  <RadioGroupItem value="both" id="both-radio" />
+                  <Label htmlFor="both-radio" className="cursor-pointer">
+                    Both
+                  </Label>
+                </div>
+              </RadioGroup>
               <br />
             </div>
           </div>
@@ -810,13 +728,13 @@ export default function CharacterGeneratorPage() {
           {/* Lock Buttons */}
           <div style={{ textAlign: 'center' }}>
             <Button
-              variant="ghost"
+              variant="outline"
               onClick={lockAll}
             >
               <LockKeyholeIcon/> All
             </Button>
             <Button
-              variant="ghost"
+              variant="outline"
               onClick={unlockAll}
             >
               <LockKeyholeOpenIcon/> All
@@ -861,43 +779,48 @@ export default function CharacterGeneratorPage() {
           {/* Gender and Name Input Section */}
           <div style={{ textAlign: 'center' }}>
             <div className="npc-show row" style={{ maxWidth: '30rem', margin: 'auto' }}>
-              <div className="col-12 col-sm-6">
-                <Button variant="ghost" onClick={() => toggleLock('traits')}>
-                  {locks.traits ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
-                </Button>
-                <Button type="button" className="dnd-button">
-                  Generate Description
-                </Button>
+              <div className="col-12 col-sm-6 mb-3">
+                <div className="flex items-center justify-center gap-2">
+                  <Button variant="outline" size="icon" onClick={() => toggleLock('traits')}>
+                    {locks.traits ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
+                  </Button>
+                  <Button type="button" variant="secondary">
+                    Generate Description
+                  </Button>
+                </div>
               </div>
-              <div className="col-12 col-sm-6">
-                <Button variant="ghost" onClick={() => toggleLock('occupation')}>
-                  {locks.occupation ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
-                </Button>
-                <Button type="button" className="dnd-button">
-                  Generate Occupation
-                </Button>
+              <div className="col-12 col-sm-6 mb-3">
+                <div className="flex items-center justify-center gap-2">
+                  <Button variant="outline" size="icon" onClick={() => toggleLock('occupation')}>
+                    {locks.occupation ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
+                  </Button>
+                  <Button type="button" variant="secondary">
+                    Generate Occupation
+                  </Button>
+                </div>
               </div>
             </div>
 
-            <div>
-              <br className="small-only-br" />
-              <div style={{ width: '100%' }}>
-                <label htmlFor="name-input">
-                  <b>Name: </b>
-                </label>
-                <input
-                  id="name-input"
-                  type="text"
-                  placeholder="Random"
-                  style={{ maxWidth: '20rem' }}
-                  className="dnd-input"
-                />
-                <Button type="button" className="dnd-button" onClick={handleGenerateName}>
-                  Generate
-                </Button>
+            <div className="mt-4 mb-4">
+              <div className="flex flex-col items-center gap-3">
+                <Label htmlFor="name-input">
+                  <b>Name</b>
+                </Label>
+                <div className="flex gap-2 items-center">
+                  <Input
+                    id="name-input"
+                    type="text"
+                    placeholder="Random"
+                    className="w-[20rem]"
+                  />
+                  <Button type="button" variant="secondary" onClick={handleGenerateName}>
+                    Generate
+                  </Button>
+                </div>
               </div>
-              <br className="small-only-br" />
-              <div className="space-y-2">
+            </div>
+
+            <div className="space-y-2">
                 <Label htmlFor="gendermenu">
                   <b>Gender</b>
                 </Label>
@@ -913,11 +836,10 @@ export default function CharacterGeneratorPage() {
                       <SelectItem value="Nonbinary or Unknown">Nonbinary or Unknown</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Button type="button" variant="default" onClick={handleGenerateGender}>
+                  <Button type="button" variant="secondary" onClick={handleGenerateGender}>
                     Generate
                   </Button>
                 </div>
-              </div>
             </div>
             <br />
             <h3>
@@ -934,7 +856,7 @@ export default function CharacterGeneratorPage() {
               <div className="flex flex-col items-center gap-3">
                 <div className="flex items-center gap-2">
                   <Label htmlFor="classmenu"><b>Class</b></Label>
-                  <Button variant="default" size="icon" onClick={() => toggleLock('class')}>
+                  <Button variant="outline" size="icon" onClick={() => toggleLock('class')}>
                     {locks.class ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
                   </Button>
                 </div>
@@ -969,7 +891,7 @@ export default function CharacterGeneratorPage() {
               <div className="flex flex-col items-center gap-3">
                 <div className="flex items-center gap-2">
                   <Label htmlFor="racemenu"><b>Race</b></Label>
-                  <Button variant="ghost" size="icon" onClick={() => toggleLock('race')}>
+                  <Button variant="outline" size="icon" onClick={() => toggleLock('race')}>
                     {locks.race ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
                   </Button>
                 </div>
@@ -1001,7 +923,7 @@ export default function CharacterGeneratorPage() {
               <div className="flex flex-col items-center gap-3">
                 <div className="flex items-center gap-2">
                   <Label htmlFor="backgroundmenu"><b>Background</b></Label>
-                  <Button variant="ghost" onClick={() => toggleLock('background')}>
+                  <Button variant="outline" size="icon" onClick={() => toggleLock('background')}>
                     {locks.background ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
                   </Button>
                 </div>
@@ -1034,20 +956,19 @@ export default function CharacterGeneratorPage() {
           <hr />
 
           {/* Life Section */}
-          <div>
-            <h3 style={{ display: 'inline', marginRight: '30px' }}>Life:</h3>
-            <Button variant="ghost" onClick={() => toggleLock('life')}>
-              {locks.life ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
-            </Button>
-            <Button type="button" className="dnd-button">
-              Generate
-            </Button>
-            <br />
-            <br />
+          <div className="mb-4">
+            <div className="flex items-center gap-3 mb-4">
+              <h3 className="m-0">Life:</h3>
+              <Button variant="outline" size="icon" onClick={() => toggleLock('life')}>
+                {locks.life ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
+              </Button>
+              <Button type="button" variant="secondary">
+                Generate
+              </Button>
+            </div>
             <ul id="lifesection" style={{ minHeight: '45rem' }}>
               {renderObjectProperties(character.Life, 'life')}
             </ul>
-            <br />
           </div>
           {/* Footer */}
           <div className="footer">
