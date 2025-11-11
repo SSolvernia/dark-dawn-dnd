@@ -93,7 +93,7 @@ The application features a classic D&D aesthetic with:
 The D&D component generators are based on the excellent work by [Tetra-cube](https://github.com/Tetra-cube/Tetra-cube.github.io). The original HTML/CSS/JS implementations have been adapted and modernized for this Next.js application.
 
 **Original Project**: https://github.com/Tetra-cube/Tetra-cube.github.io
-**Live Demo of Original**: https://tetra-cube.com/dnd/
+**Live Demo of Original**: https://tetra-cube.com/dnd/dnd-char-gen.html
 
 Special thanks to Tetra-cube for creating these comprehensive D&D generators and making them available as open source.
 

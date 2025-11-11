@@ -312,3 +312,22 @@ html {
     display: block;
   }
 }
+
+/* Character Type Visibility Controls */
+/* When character type is PC */
+.char-type-pc .npc-show,
+.char-type-pc .npc-only-show {
+  display: none !important;
+}
+
+/* When character type is NPC */
+.char-type-npc .pc-show,
+.char-type-npc .pc-only-show {
+  display: none !important;
+}
+
+/* When character type is Either (both) */
+.char-type-either .pc-only-show,
+.char-type-either .npc-only-show {
+  display: none !important;
+}
