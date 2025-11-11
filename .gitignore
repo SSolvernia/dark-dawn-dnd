@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# reference files (original HTML/CSS/JS from Tetra-cube)
+/dnd
