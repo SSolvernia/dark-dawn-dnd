@@ -19,7 +19,7 @@ html {
   max-width: 1000px;
   margin: 0 auto;
   line-height: 125%;
-  background-color: #fff;
+  background-color: #fafafa;
   border-style: none;
   min-height: 100%;
   color: #000000;
@@ -148,14 +148,7 @@ html {
   margin-bottom: 0.5rem;
 }
 
-.radio-row {
-  line-height: 1.5rem;
-  margin-bottom: 1rem;
-}
 
-.radio-row b {
-  line-height: 2rem;
-}
 
 .lock-button {
   width: 2rem;
@@ -183,7 +176,7 @@ html {
 
 #cardcontainer canvas {
   border: 2px solid #ccc;
-  background: white;
+  background: rgb(225, 217, 217);
 }
 
 #plaintext {
@@ -220,8 +213,6 @@ html {
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
 }
 
 .row > * {

@@ -393,8 +393,7 @@ export default function CharacterGeneratorPage() {
       <div className="char-gen-body">
         <div className="dnd-container">
           <div className="dnd-content">
-            <h1 style={{ textAlign: 'center' }}>Loading D&D Data...</h1>
-            <p style={{ textAlign: 'center' }}>Please wait while we load the character generator data.</p>
+            <h1 style={{ textAlign: 'center' }}>Loading Data...</h1>
           </div>
         </div>
       </div>
@@ -431,7 +430,7 @@ export default function CharacterGeneratorPage() {
 
           <br />
 
-          <h1>D&amp;D 5e Random Character Generator</h1>
+          <h1>Random Character Generator</h1>
           <br />
           <div>Select which books to use:</div>
 
@@ -547,10 +546,9 @@ export default function CharacterGeneratorPage() {
             </div>
           </div>
 
-          <hr />
 
           {/* Main Action Buttons and Canvas */}
-          <div className="text-center space-y-4">
+          <Card className="text-center space-y-4 py-4">
             <div className="flex gap-2 justify-center">
               <Button onClick={handleGenerateCharacter} size="lg">
                 Generate Character
@@ -561,7 +559,7 @@ export default function CharacterGeneratorPage() {
             </div>
 
             {/* Image Upload Section */}
-            <Card className="max-w-md mx-auto">
+            <Card className="max-w-md mx-auto bg-blue-50">
               <CardHeader>
                 <CardTitle className="text-base">Character Portrait</CardTitle>
               </CardHeader>
@@ -569,6 +567,7 @@ export default function CharacterGeneratorPage() {
                 <Input
                   type="file"
                   accept="image/*"
+                  placeholder="Choose File"
                   onChange={handleImageUpload}
                   className="cursor-pointer"
                 />
@@ -607,13 +606,11 @@ export default function CharacterGeneratorPage() {
               ></textarea>
             </div>
             <br />
-          </div>
-
-          <hr />
+          </Card>
 
           {/* Configuration Options */}
-          <div className="row radio-row">
-            <div className="col-12 col-sm-6 col-lg-3">
+          <Card className="row radio-row text-center space-y-4 py-4 mt-4">
+            <div className="col-12 col-sm-6 col-lg-3 text-left">
               <b>Show:</b>
               <RadioGroup value={cardType} onValueChange={setCardType} className="mt-2">
                 <div className="flex items-center space-x-2 mb-2">
@@ -643,7 +640,7 @@ export default function CharacterGeneratorPage() {
               </RadioGroup>
               <br />
             </div>
-            <div className="col-12 col-sm-6 col-lg-3">
+            <div className="col-12 col-sm-6 col-lg-3 text-left">
               <b>Character Type:</b>
               <RadioGroup value={characterType} onValueChange={setCharacterType} className="mt-2">
                 <div className="flex items-center space-x-2 mb-2">
@@ -667,7 +664,7 @@ export default function CharacterGeneratorPage() {
               </RadioGroup>
               <br />
             </div>
-            <div className="col-12 col-sm-6 col-lg-3">
+            <div className="col-12 col-sm-6 col-lg-3 text-left">
               <b>Race Randomizer:</b>
               <RadioGroup value={raceRandomizer} onValueChange={setRaceRandomizer} className="mt-2">
                 <div className="flex items-center space-x-2 mb-2">
@@ -697,7 +694,7 @@ export default function CharacterGeneratorPage() {
               </RadioGroup>
               <br />
             </div>
-            <div className="col-12 col-sm-6 col-lg-3">
+            <div className="col-12 col-sm-6 col-lg-3 text-left">
               <b>Human Ethnicities:</b>
               <RadioGroup value={ethnicityType} onValueChange={setEthnicityType} className="mt-2">
                 <div className="flex items-center space-x-2 mb-2">
@@ -721,29 +718,27 @@ export default function CharacterGeneratorPage() {
               </RadioGroup>
               <br />
             </div>
-          </div>
+          </Card>
 
-          <hr />
 
           {/* Lock Buttons */}
-          <div style={{ textAlign: 'center' }}>
+          <Card className="text-center flex items-center justify-around p-3 mt-4">
             <Button
-              variant="outline"
+              variant="secondary"
               onClick={lockAll}
             >
               <LockKeyholeIcon/> All
             </Button>
             <Button
-              variant="outline"
+              variant="secondary"
               onClick={unlockAll}
             >
               <LockKeyholeOpenIcon/> All
             </Button>
-            <br />
-            <Button size="lg" onClick={handleGenerateCharacter}>
+            <Button variant="secondary" size="lg" onClick={handleGenerateCharacter}>
               Generate Character
             </Button>
-          </div>
+          </Card>
           <br />
 
           {/* Character Info Summary */}
@@ -773,15 +768,14 @@ export default function CharacterGeneratorPage() {
             </li>
           </ul>
 
-          <br />
-          <hr />
+
 
           {/* Gender and Name Input Section */}
-          <div style={{ textAlign: 'center' }}>
-            <div className="npc-show row" style={{ maxWidth: '30rem', margin: 'auto' }}>
+          <Card className="p-4 mt-4 text-left">
+            <div className="npc-show row">
               <div className="col-12 col-sm-6 mb-3">
                 <div className="flex items-center justify-center gap-2">
-                  <Button variant="outline" size="icon" onClick={() => toggleLock('traits')}>
+                  <Button variant="secondary" size="icon" onClick={() => toggleLock('traits')}>
                     {locks.traits ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
                   </Button>
                   <Button type="button" variant="secondary">
@@ -791,7 +785,7 @@ export default function CharacterGeneratorPage() {
               </div>
               <div className="col-12 col-sm-6 mb-3">
                 <div className="flex items-center justify-center gap-2">
-                  <Button variant="outline" size="icon" onClick={() => toggleLock('occupation')}>
+                  <Button variant="secondary" size="icon" onClick={() => toggleLock('occupation')}>
                     {locks.occupation ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
                   </Button>
                   <Button type="button" variant="secondary">
@@ -802,7 +796,7 @@ export default function CharacterGeneratorPage() {
             </div>
 
             <div className="mt-4 mb-4">
-              <div className="flex flex-col items-center gap-3">
+              <div className="flex flex-col items-left gap-3">
                 <Label htmlFor="name-input">
                   <b>Name</b>
                 </Label>
@@ -848,15 +842,15 @@ export default function CharacterGeneratorPage() {
                 {character.Race?.name === 'Warforged' ? 'Genderless' : character.Gender || ''}
               </span>
             </h3>
-          </div>
+          </Card>
 
           {/* Character Details Columns */}
-          <div id="character-columns" className="row">
+          <Card id="character-columns" className="row mt-4 py-4">
             <div className="col-12 col-lg-4 pc-show" id="class-section">
-              <div className="flex flex-col items-center gap-3">
+              <div className="flex flex-col items-left gap-3">
                 <div className="flex items-center gap-2">
                   <Label htmlFor="classmenu"><b>Class</b></Label>
-                  <Button variant="outline" size="icon" onClick={() => toggleLock('class')}>
+                  <Button variant="secondary" size="icon" onClick={() => toggleLock('class')}>
                     {locks.class ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
                   </Button>
                 </div>
@@ -873,7 +867,7 @@ export default function CharacterGeneratorPage() {
                       ))}
                     </SelectContent>
                   </Select>
-                  <Button type="button" variant="outline" onClick={handleGenerateClass}>
+                  <Button type="button" variant="secondary" onClick={handleGenerateClass}>
                     Generate
                   </Button>
                 </div>
@@ -888,10 +882,10 @@ export default function CharacterGeneratorPage() {
               className={characterType === 'npc' ? 'col-12' : 'col-12 col-lg-4'}
               id="race-section"
             >
-              <div className="flex flex-col items-center gap-3">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-col items-left gap-3">
+                <div className="flex items-left gap-2">
                   <Label htmlFor="racemenu"><b>Race</b></Label>
-                  <Button variant="outline" size="icon" onClick={() => toggleLock('race')}>
+                  <Button variant="secondary" size="icon" onClick={() => toggleLock('race')}>
                     {locks.race ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
                   </Button>
                 </div>
@@ -908,7 +902,7 @@ export default function CharacterGeneratorPage() {
                       ))}
                     </SelectContent>
                   </Select>
-                  <Button type="button" variant="outline" onClick={handleGenerateRace}>
+                  <Button type="button" variant="secondary" onClick={handleGenerateRace}>
                     Generate
                   </Button>
                 </div>
@@ -920,10 +914,10 @@ export default function CharacterGeneratorPage() {
               <br />
             </div>
             <div className="col-12 col-lg-4 pc-show" id="background-section">
-              <div className="flex flex-col items-center gap-3">
+              <div className="flex flex-col items-left gap-3">
                 <div className="flex items-center gap-2">
                   <Label htmlFor="backgroundmenu"><b>Background</b></Label>
-                  <Button variant="outline" size="icon" onClick={() => toggleLock('background')}>
+                  <Button variant="secondary" size="icon" onClick={() => toggleLock('background')}>
                     {locks.background ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
                   </Button>
                 </div>
@@ -940,7 +934,7 @@ export default function CharacterGeneratorPage() {
                       ))}
                     </SelectContent>
                   </Select>
-                  <Button type="button" variant="outline" onClick={handleGenerateBackground}>
+                  <Button type="button" variant="secondary" onClick={handleGenerateBackground}>
                     Generate
                   </Button>
                 </div>
@@ -951,15 +945,14 @@ export default function CharacterGeneratorPage() {
               <ul id="backgroundsection">{renderContent(character.Background, 'background')}</ul>
               <br />
             </div>
-          </div>
+          </Card>
 
-          <hr />
 
           {/* Life Section */}
-          <div className="mb-4">
+          <Card className="mb-4 mt-4 p-4">
             <div className="flex items-center gap-3 mb-4">
               <h3 className="m-0">Life:</h3>
-              <Button variant="outline" size="icon" onClick={() => toggleLock('life')}>
+              <Button variant="secondary" size="icon" onClick={() => toggleLock('life')}>
                 {locks.life ? <LockKeyholeIcon/> : <LockKeyholeOpenIcon/>}
               </Button>
               <Button type="button" variant="secondary">
@@ -969,7 +962,7 @@ export default function CharacterGeneratorPage() {
             <ul id="lifesection" style={{ minHeight: '45rem' }}>
               {renderObjectProperties(character.Life, 'life')}
             </ul>
-          </div>
+          </Card>
           {/* Footer */}
           <div className="footer">
           </div>
