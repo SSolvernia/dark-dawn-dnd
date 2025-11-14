@@ -633,6 +633,340 @@ const CardRenderer = {
     if (!name) return '';
     return name.toLowerCase().split(' ').join('-');
   },
+
+  /**
+   * Render Dark Dawn character sheet card
+   */
+  renderDarkDawn: function (canvas, character, uploadedImage = null, displayMode = 'simple') {
+    if (!canvas || !character) return;
+
+    // Route to appropriate render function based on display mode
+    if (displayMode === 'detailed') {
+      return this.renderDarkDawnDetailed(canvas, character, uploadedImage);
+    } else {
+      return this.renderDarkDawnSimple(canvas, character, uploadedImage);
+    }
+  },
+
+  /**
+   * Render Dark Dawn character sheet card - Simple mode (names only)
+   */
+  renderDarkDawnSimple: function (canvas, character, uploadedImage = null) {
+    if (!canvas || !character) return;
+
+    const ctx = canvas.getContext('2d');
+    const padding = 20;
+    const paddingx2 = 40;
+    const lineHeight = 28;
+
+    // Use faction-based color or default
+    const bgColor = this.getDarkDawnColor(character.Faction?.name || 'Default');
+
+    // Draw background with gradient
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, bgColor);
+    gradient.addColorStop(1, this.darkenColor(bgColor, 0.3));
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw portrait area
+    const portraitHeight = canvas.height / 3;
+
+    if (uploadedImage) {
+      const img = new Image();
+      img.onload = () => {
+        const portraitWidth = canvas.width - paddingx2;
+        const imgAspect = img.width / img.height;
+        const portraitAspect = portraitWidth / portraitHeight;
+
+        let drawWidth, drawHeight, drawX, drawY;
+
+        if (imgAspect > portraitAspect) {
+          drawWidth = portraitWidth;
+          drawHeight = portraitWidth / imgAspect;
+          drawX = padding;
+          drawY = padding + (portraitHeight - drawHeight) / 2;
+        } else {
+          drawHeight = portraitHeight;
+          drawWidth = portraitHeight * imgAspect;
+          drawX = padding + (portraitWidth - drawWidth) / 2;
+          drawY = padding;
+        }
+
+        ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(padding, padding, portraitWidth, portraitHeight);
+      };
+      img.src = uploadedImage;
+    } else {
+      // Draw placeholder portrait
+      const portraitColor = this.getDarkDawnAccentColor(character.Faction?.name || 'Default');
+      const portraitGradient = ctx.createRadialGradient(
+        canvas.width / 2, portraitHeight / 2 + padding, 50,
+        canvas.width / 2, portraitHeight / 2 + padding, 200
+      );
+      portraitGradient.addColorStop(0, portraitColor);
+      portraitGradient.addColorStop(1, this.darkenColor(portraitColor, 0.4));
+
+      ctx.fillStyle = portraitGradient;
+      ctx.fillRect(padding, padding, canvas.width - paddingx2, portraitHeight);
+
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(padding, padding, canvas.width - paddingx2, portraitHeight);
+
+      // Add initial in portrait
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.font = 'bold 48px Georgia';
+      ctx.textAlign = 'center';
+      ctx.fillText(
+        (character.Race?.name || 'Unknown').charAt(0).toUpperCase(),
+        canvas.width / 2,
+        portraitHeight / 2 + padding + 20
+      );
+    }
+
+    // Draw character information
+    let yPos = portraitHeight + paddingx2 + 10;
+
+    ctx.fillStyle = 'white';
+    ctx.textAlign = 'left';
+
+    // Name
+    ctx.font = 'bold 24px Tahoma';
+    ctx.fillText(character.Name || 'Unnamed Character', padding, yPos);
+    yPos += lineHeight + 8;
+
+    // Separator line
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(padding, yPos);
+    ctx.lineTo(canvas.width - padding, yPos);
+    ctx.stroke();
+    yPos += 20;
+
+    // Character attributes
+    ctx.font = '18px Tahoma';
+    const attributes = [
+      { label: 'Race', value: character.Race?.name },
+      { label: 'Class', value: character.Class?.name },
+      { label: 'Faction', value: character.Faction?.name },
+      { label: 'Deity', value: character.Deity?.name },
+      { label: 'Special Ability', value: character.SpecialAbility?.name },
+      { label: 'Faction Ability', value: character.FactionAbility },
+    ];
+
+    const labelWidth = 140;
+
+    attributes.forEach((attr) => {
+      if (attr.value) {
+        ctx.font = 'bold 16px Tahoma';
+        const labelText = `${attr.label}:`;
+        ctx.fillText(labelText, padding, yPos);
+
+        ctx.font = '16px Tahoma';
+
+        // Wrap text if needed using multilineStringArray
+        const valueText = String(attr.value);
+        const lines = this.multilineStringArray(ctx, valueText, labelWidth);
+
+        // Draw first line next to label
+        ctx.fillText(lines[0], padding + labelWidth, yPos);
+        yPos += lineHeight;
+
+        // Draw remaining lines (if any)
+        for (let i = 1; i < lines.length; i++) {
+          ctx.fillText(lines[i], padding, yPos);
+          yPos += lineHeight;
+        }
+      }
+    });
+  },
+
+  /**
+   * Render Dark Dawn character sheet card - Detailed mode (names + descriptions)
+   */
+  renderDarkDawnDetailed: function (canvas, character, uploadedImage = null) {
+    if (!canvas || !character) return;
+
+    const ctx = canvas.getContext('2d');
+    const padding = 20;
+    const paddingx2 = 40;
+    const lineHeight = 24;
+    const sectionSpacing = 15;
+
+    // Use faction-based color or default
+    const bgColor = this.getDarkDawnColor(character.Faction?.name || 'Default');
+
+    // Draw background with gradient
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, bgColor);
+    gradient.addColorStop(1, this.darkenColor(bgColor, 0.3));
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw portrait area (smaller for detailed view)
+    const portraitHeight = 200;
+
+    if (uploadedImage) {
+      const img = new Image();
+      img.onload = () => {
+        const portraitWidth = canvas.width - paddingx2;
+        const imgAspect = img.width / img.height;
+        const portraitAspect = portraitWidth / portraitHeight;
+
+        let drawWidth, drawHeight, drawX, drawY;
+
+        if (imgAspect > portraitAspect) {
+          drawWidth = portraitWidth;
+          drawHeight = portraitWidth / imgAspect;
+          drawX = padding;
+          drawY = padding + (portraitHeight - drawHeight) / 2;
+        } else {
+          drawHeight = portraitHeight;
+          drawWidth = portraitHeight * imgAspect;
+          drawX = padding + (portraitWidth - drawWidth) / 2;
+          drawY = padding;
+        }
+
+        ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(padding, padding, portraitWidth, portraitHeight);
+      };
+      img.src = uploadedImage;
+    } else {
+      // Draw placeholder portrait
+      const portraitColor = this.getDarkDawnAccentColor(character.Faction?.name || 'Default');
+      const portraitGradient = ctx.createRadialGradient(
+        canvas.width / 2, portraitHeight / 2 + padding, 40,
+        canvas.width / 2, portraitHeight / 2 + padding, 150
+      );
+      portraitGradient.addColorStop(0, portraitColor);
+      portraitGradient.addColorStop(1, this.darkenColor(portraitColor, 0.4));
+
+      ctx.fillStyle = portraitGradient;
+      ctx.fillRect(padding, padding, canvas.width - paddingx2, portraitHeight);
+
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(padding, padding, canvas.width - paddingx2, portraitHeight);
+
+      // Add initial in portrait
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.font = 'bold 40px Georgia';
+      ctx.textAlign = 'center';
+      ctx.fillText(
+        (character.Race?.name || 'Unknown').charAt(0).toUpperCase(),
+        canvas.width / 2,
+        portraitHeight / 2 + padding + 15
+      );
+    }
+
+    // Draw character information
+    let yPos = portraitHeight + paddingx2;
+
+    ctx.fillStyle = 'white';
+    ctx.textAlign = 'left';
+
+    // Name
+    ctx.font = 'bold 22px Tahoma';
+    ctx.fillText(character.Name || 'Unnamed Character', padding, yPos);
+    yPos += lineHeight + 8;
+
+    // Separator line
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(padding, yPos);
+    ctx.lineTo(canvas.width - padding, yPos);
+    ctx.stroke();
+    yPos += 15;
+
+    // Helper function to render a field with description
+    const renderField = (label, name, description) => {
+      if (!name) return;
+
+      // Label
+      ctx.font = 'bold 15px Tahoma';
+      ctx.fillText(`${label}:`, padding, yPos);
+      yPos += lineHeight;
+
+      // Name value
+      ctx.font = '14px Tahoma';
+      ctx.fillText(name, padding + 10, yPos);
+      yPos += lineHeight;
+
+      // Description (if available)
+      if (description && description !== 'undefined') {
+        ctx.font = 'italic 13px Tahoma';
+        const lines = this.multilineStringArray(ctx, description, 10);
+
+        lines.forEach(line => {
+          ctx.fillText(line, padding + 10, yPos);
+          yPos += lineHeight - 2;
+        });
+      }
+
+      yPos += sectionSpacing;
+    };
+
+    // Render each field with its description
+    renderField('Race', character.Race?.name, character.Race?.description);
+    renderField('Class', character.Class?.name, character.Class?.description);
+    renderField('Faction', character.Faction?.name, character.Faction?.description);
+    renderField('Deity', character.Deity?.name, character.Deity?.description);
+    renderField('Special Ability', character.SpecialAbility?.name, character.SpecialAbility?.description);
+
+    // Faction Ability (just the string, no description)
+    if (character.FactionAbility) {
+      ctx.font = 'bold 15px Tahoma';
+      ctx.fillText('Faction Ability:', padding, yPos);
+      yPos += lineHeight;
+
+      ctx.font = '14px Tahoma';
+      const lines = this.multilineStringArray(ctx, String(character.FactionAbility), 10);
+
+      lines.forEach(line => {
+        ctx.fillText(line, padding + 10, yPos);
+        yPos += lineHeight;
+      });
+    }
+  },
+
+  /**
+   * Get Dark Dawn faction colors
+   */
+  getDarkDawnColor: function (factionName) {
+    const colors = {
+      'The Guardians': '#4a7c9e',
+      'Shadow Council': '#5a3d6b',
+      'Arcane Order': '#7b3f8f',
+      'Iron Legion': '#8b4545',
+      'Default': '#5a5a5a',
+    };
+    return colors[factionName] || colors.Default;
+  },
+
+  /**
+   * Get Dark Dawn accent colors
+   */
+  getDarkDawnAccentColor: function (factionName) {
+    const colors = {
+      'The Guardians': '#6fa3d4',
+      'Shadow Council': '#8b6ba3',
+      'Arcane Order': '#b366cc',
+      'Iron Legion': '#c76b6b',
+      'Default': '#808080',
+    };
+    return colors[factionName] || colors.Default;
+  },
 };
 
 export default CardRenderer;

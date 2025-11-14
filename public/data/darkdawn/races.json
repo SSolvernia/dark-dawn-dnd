@@ -1,0 +1,34 @@
+{
+  "Humano": {
+    "name": "Humano",
+    "description": "Hombre, mujer, Seres que pueblan la mayoría del planeta. Son buenos en cualquier área. Más no se especializan en ninguno de ellos. El Ser Humano ha existido desde los albores del mundo, poblando cada rincón, sea como gobernantes o como esclavos. Durante los últimos años, el ser humano se ha logrado una posición entre todas las razas reconocible. Permitiéndole vivir en casi cualquier poblado sin problema alguno."
+  },
+  "Tyo": {
+    "name": "Tyo",
+    "description": "Hombres bestia adeptos al combate- Hombre, mujer. Son altos y fornidos, Poseen largas orejas que llegan casi hasta el suelo, su pelo es largo y cubren en varias ocasiones parte de sus ojos, Su sentido del olfato y de la escucha están increíblemente desarrolladoLos Tyo aparecieron durante la Era de la sombra maldita, se cree que fueron culpa de la energía de los Enviados Vyx a Hyulgar, la cual causó que las bestias que habitan los bosques evolucionarán una consciencia y les permitiera comunicarse y pensar como cualquier ser humano.Desde su aparición, los Tyo se convirtieron en una fuerza de temer, su gran fuerza bruta les permitió conquistar a sus enemigos y dominarlos con puño de Hierro, forjando una legión indomable que se extendió por todo Hyulgar."
+  },
+  "Vraz": {
+    "name": "Vraz",
+    "description": "Elementales del ether, adeptos a la magia- Sin sexo, tienen una aparencia parecida a la de un elemental, su parte inferior expulsa energía que rebota contra el suelo causando propulsión que mueve al Vraz. Liberan un suave brillo.Los Vraz se formaron durante la Era del Nuevo Mundo, la aparición de estas entidades celestes liberó una gran cantidad de energía concentrada en todo el mundo. Y Zonas que tenían grandes cantidades de Zaub almacenado, tomaron vida propia, levantando criaturas con pensamiento propio.Estas criaturas adeptas al Zaub, fueron estudiadas por fanáticos alrededor del mundo. Buscando una manera de asimilar estas formas de energía pura en algo de más beneficio. Debido a esto, los Vraz son tratados  como simples objetos desechables, material de investigación, y no un ser vivo."
+  },
+  "Metra": {
+    "name": "Metra",
+    "description": "Altos ingenieros, Hombres y mujeres. Viven en ciudades altas en los cielos. Debido a esto y al poco oxigeno que reciben, sus hijos nacen con falta de extremidades, haciendo que los Metras posean extremidades biomecánicas desde edades muy tempranas. Cuando los humanos se separaron en naciones, un selecto grupo decidió dejar atrás la impura tierra y vivir cerca a sus dioses. Así, construyeron ciudades que levantaron alto en el cielo, y se separaron de la civilización en el suelo. Con el paso de los años, estos humanos se dieron cuenta de que sus pequeños nacían con deformidades o problemas especiales, obligándolos a reemplazar estas faltas con implantes mecánicos.Poco a poco el ideal original de estos humanos se fue perdiendo, y su devoción se cambió por una mentalidad centrada en lo que ellos llaman la gloriosa evolución. La unión perfecta entre la máquina y la carne. Así, los Metra nacieron."
+  },
+  "Catro": {
+    "name": "Catro",
+    "description": "Bestias mitad escarabajo mitad humano, habitan bajo la tierra, adeptos a la minería, No ven muy bien. En sus cabezas poseen pinzas con las cuales levantan piedras o muelen rocas. En su espalda poseen fuertes caparazones de un material desconocido Los Catro han existido desde el principio de los tiempos, viviendo bajo el mundo de Hyulgar y huyendo del caos que existía en la superficie. Debido a la poca luz que poseen bajo tierra, han evolucionado con el paso de los años para adaptarse a este hostil ambiente. Se sabe que sus ciudades son enormes y se extienden varios kilómetros bajo tierra. Pero muy pocas razas conocen la ubicación o entrada de estas ciudadelas"
+  },
+  "Miko": {
+    "name": "Miko",
+    "description": "Criaturas adeptas al Zaub, no pueden morir por causas naturales. Parecidas a pequeños gatos con ojos rojos. Terminan toda frase en Nyao. En la punta de su cola tienen un Mechon de color piel que se vuelve amarillo cuando están felices.Los Miko son criaturas que han vivido en la zona Suroriental del mundo desde que se tiene registro de Hyulgar. Viviendo aislados de cualquier contacto con las razas del mundo, sus investigaciones se centraron en el manejo del Zaub.Con el pasar de los años los Miko adiestraron esta arte y la volvieron parte común de la vida de ellos. Llevándolos al poder de la eterna Juventud; Ya que la mayoría de Mikos alcanza una cierta edad de envejecimiento y permanecen así el resto de su vida. Muriendo solamente por mano ajena."
+  },
+  "Ubra": {
+    "name": "Ubra",
+    "description": "Humanos maldecidos por la el amanecer negro. Su figura es deteriorada y les faltan en ciertos casos extremidades. Aun así, conservan su antigua conciencia, y debido a que no pueden morir por causas naturales y a que su cuerpo fluye con Osqura en su totalidad. Poseen una mente muy abierta y avanzada en comparación a otras razas. Los Ubra aparecieron debido a la gran oscuridad que cegó el mundo durante el amanecer negro. Muchos fieles y seguidores de los Antiguos perdieron su acceso al Zaub natural que fluía durante esa época por su cuerpo. Esta sequía de Zaub los destruye lentamente y los convirtió en meros cascarones de lo que eran."
+  },
+  "Yesta": {
+    "name": "Yesta",
+    "description": "Mujeres bellas, esbeltas, altas, de pelo plateado. Un culto que cree en la existencia de antiguas deidades que alguna vez gobernaron el cosmo. Adorandolos por nombres desconocidos y con ideas extrañas. Las Yesta vinieron a existir después de mediados de la ”Era del nuevo Mundo”, sus raíces se datan a un culto secreto dentro de la ciudad de Hiliga. El culto era popular, y su palabra respecto a unos supuestos “Dioses” se extendió rápidamente por las calles, hasta llegar a oídos de la corte suprema de la Federación. Para evitar insurgencias debidas a problemas religiosos, las Yesta fueron exiliadas de Hiliga. Tiempo después, las Yesta formaron su propio sistema religioso, su propio sistema político y hasta económico, en un lugar donde podían libremente adorar a los que ellas llaman “Los Olvidados”"
+  }
+}

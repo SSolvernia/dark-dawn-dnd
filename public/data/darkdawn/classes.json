@@ -1,0 +1,42 @@
+{
+  "Clerigo": {
+    "name": "Clerigo",
+    "description": "Curandero"
+  },
+  "Augwok": {
+    "name": "Augwok",
+    "description": "Daño cuerpo a cuerpo"
+  },
+  "Terre": {
+    "name": "Terre",
+    "description": "Daño cuerpo a cuerpo"
+  },
+  "Ischknight": {
+    "name": "Ischknight",
+    "description": "Especial"
+  },
+  "Inquisidor": {
+    "name": "Inquisidor",
+    "description": "Tanque"
+  },
+  "Magnus": {
+    "name": "Magnus",
+    "description": "Daño a distancia"
+  },
+  "Celeste": {
+    "name": "Celeste",
+    "description": "Daño cuerpo a cuerpo"
+  },
+  "Guardabosques": {
+    "name": "Guardabosques",
+    "description": "Daño a distancia"
+  },
+  "Aruspice": {
+    "name": "Aruspice",
+    "description": "Daño a distancia"
+  },
+  "Acechatumbas": {
+    "name": "Acechatumbas",
+    "description": "Curandero"
+  }
+}

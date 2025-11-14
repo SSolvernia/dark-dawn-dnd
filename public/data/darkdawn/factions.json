@@ -1,0 +1,37 @@
+{
+  "La orden del verdadero Camino ": {
+    "name": "La orden del verdadero Camino ",
+    "description": "Nuestro destino ya ha sido escrito, cada paso que damos, cada palabra que recitamos, cada respiro que tomamos, ha sido predispuesto por nuestro creador. Nada existe por el azar, por eso debemos de escuchar y obedecer cada palabra entregada por nuestro líder Ulysses. Solo así podremos construir un futuro brillante, todos bajo la misma creencia. “un Verdadero mundo, un verdadero camino!”",
+    "abilities": [
+      "Predestinó: Los seguidores de la orden del verdadero camino no son afectados por efectos al azar (Habilidades con la posibilidad de realizar algo extra EXM: Al golpear tiene una pequeña posibilidad de paralizar)"
+    ]
+  },
+  "La Legion de Acero": {
+    "name": "La Legion de Acero",
+    "description": "Los débiles han estado frente a nuestras puertas desde siempre, amenazandonos con sus falsas creencias y sus estúpidos ideales. Orar no hará nada para construir un futuro para cada uno, la única manera de traer orden a este mundo podrido es aplastando a cualquiera que se atraviese en nuestro camino. el General Tasker H. Bliss conoce bien sobre esto, su gran habilidad militar y visión conquistadora traerá a este mundo el verdadero orden que busca. Nuestros dioses están felices con cada cadáver que arda en la hoguera. “Acero y fuego hoy, Paz y libertad mañana!”",
+    "abilities": [
+      "Señor de la Guerra: Los seguidores de la Legión de acero se sienten en su hogar cuando están en territorio ajeno, peleando por los ideales de su general. Debido a esto, reciben una mejora de Ataque y defensa cuando combaten (2PT)"
+    ]
+  },
+  "El Juzgado de los ocho caminos": {
+    "name": "El Juzgado de los ocho caminos",
+    "description": "No hay porqué sentirnos presos de una creencia, los dioses no son seres sedientos de sangre o sacrificios. No debemos de vivir orando para poder complacerlos, ellos están felices con que simplemente mencionemos su nombre, o hagamos una pequeña reverencia antes de combatir. Nuestro sabios líderes, descendientes de los sacerdotes que cayeron de las estrellas, llamados apropiadamente como cada deidad,  saben que no debemos vivir asustados de nuestros protectores, si no regocijarnos por poder vivir felizmente bajo la protección de cada uno de ellos. “Muchas creencias, un solo sueño”",
+    "abilities": [
+      "Multipropósito: Los seguidores del Juzgado de los ocho caminos son abiertos de mente, para ellos, los efectos de extra de los dioses no tienen efecto en ellos (EXM: Si se usa contra un seguidor del Fuego, causa daño extra)"
+    ]
+  },
+  "Parroquia del Dios Falso": {
+    "name": "Parroquia del Dios Falso",
+    "description": "Seres superiores?, “Deidades?”, Ha, nada más que cuentos de hadas creados por aquellos sin cerebro. Es imposible creer que hay seres invisibles gigantes que dictan todo lo que hacemos día a día, una verdadera estupidez. “Milagros” Dices?. Acaso eres un idiota, la Séptima y el Altima son los verdaderos causantes de estos supuestos actos divinos. Nuestra Lunarca Malte entiende nuestro pensamiento. Es asi de simple, la gente maligna mancha su Séptima, hasta que finalmente su alma no es capaz de aguantarlo, convirtiéndose en Altima. Cuando esta última se deja sola su energía se libera y causa tus estupendos milagros. Espero que eso te lo haya dejado claro, es “Una vida libre de supersticiones”",
+    "abilities": [
+      "Ateo: Los seguidores de la parroquia del Dios Falso no se ven afectados por habilidades o hechizos extra brindadas por los dioses en base a la devoción."
+    ]
+  },
+  "Consulado de Tribulaciones": {
+    "name": "Consulado de Tribulaciones",
+    "description": "Ah… Se que no estas feliz conmigo, tu mundo se pudre lentamente y no hay nada que pueda hacer… He pecado, y debo ser castigado. Tranquilo mi iluminado, yo sé lo que debo hacer para pagar mi atrocidad. Mi cuerpo es su lienzo, mis manos su pincel, hagan con él lo que ustedes deseen.Mi señor, mi Demidios de tres caras, guieme por favor a una eternidad donde viva bajo el cuidado de mi dios. Haciéndolo feliz con cada centímetro de mi ser. sin importar que tan grande sea su petición",
+    "abilities": [
+      "Flagelación: Los seguidores de el consulado de tribulaciones no se ven afectados por habilidades que jueguen con la Séptima propia, mas ellos se ven beneficiados de habilidades que aprovechan la Séptima de su enemigo.y"
+    ]
+  }
+}

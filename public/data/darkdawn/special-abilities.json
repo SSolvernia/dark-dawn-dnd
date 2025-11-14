@@ -1,0 +1,46 @@
+{
+  "AeroVuelo": {
+    "name": "AeroVuelo",
+    "description": "El Personaje entiende lo necesario para utilizar Aeronaves de diferentes tipos, Entre más habilidad consiga, tendrá acceso a vehículos diferentes, con capacidades y velocidades especiales."
+  },
+  "Montaje": {
+    "name": "Montaje",
+    "description": "El Personaje puede utilizar monturas de diferentes tipos. Entre mejor nivel, puede domar bestias más potentes y montarlas más fácilmente."
+  },
+  "Mythos": {
+    "name": "Mythos",
+    "description": "El Personaje conoce historias antiguas, mitos y leyendas de la tierra. Su conocimiento es tan avanzado que puede leer y entender lenguas extrañas y antiguas."
+  },
+  "Pesca": {
+    "name": "Pesca",
+    "description": "El Personaje sabe como hacer que piquen el anzuelo, lo cual le permite conseguir las mejores pescas, e inclusive en algunas ocasiones bestias míticas o tesoros bajo el agua."
+  },
+  "Vahomancia": {
+    "name": "Vahomancia",
+    "description": "El personaje es hábil con el Vapor, la tecnología predominante en el mundo, con esta, puede crear maquinaria y equipamiento avanzado, todo esto hecho por medio de vapor."
+  },
+  "Enseñanza": {
+    "name": "Enseñanza",
+    "description": "El Personaje es habil para tanto el aprendizaje como enseñanza de habilidades. Esto le permite aprender hechizos, ESP o informacion mucho mas facil que los otros. e igualmente compartir sus hechizos o habilidades con otros."
+  },
+  "Ascetico": {
+    "name": "Ascetico",
+    "description": "El personaje es dedicado a la religion, capaz de dedicar su vida constantemente a los dioses. debido a esto, su devocion crece mas rapidamente que la de los otros, sus habilidades donadas por deidades son mas fuertes. y su resistencia a habilidades de deidades es mayor."
+  },
+  "Tributario": {
+    "name": "Tributario",
+    "description": "El Personaje tiene un muy buen ojo para el comercio, lo que le permite identificar objetos extraños en las tiendas y su precio exacto. Además de permitirle vender más caro y comprar más barato."
+  },
+  "Peletero": {
+    "name": "Peletero",
+    "description": "undefined"
+  },
+  "Carroñero": {
+    "name": "Carroñero",
+    "description": "El Personaje, al completar un combate, puede destripar y abrir al enemigo para conseguir recursos que pueden usar para hacer equipamientos especiales o pócimas especiales."
+  },
+  "Navegación": {
+    "name": "Navegación",
+    "description": "undefined"
+  }
+}
