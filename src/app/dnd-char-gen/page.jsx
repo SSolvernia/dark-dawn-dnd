@@ -9,6 +9,7 @@ import DarkDawnGenerate from '@/lib/generators/darkdawn';
 import Life from '@/lib/generators/life';
 import NPC from '@/lib/generators/npc';
 import CardRenderer from '@/lib/utils/cardRenderer';
+import { exportDarkDawnToPDF } from '@/lib/utils/pdfExporter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -726,14 +727,88 @@ export default function CharacterGeneratorPage() {
 
   /**
    * Generate complete Dark Dawn character
+   * Applies selections from dropdowns and respects locks
    */
   const handleGenerateDDCharacter = () => {
     if (!ddData) return;
 
-    const newCharacter = DarkDawnGenerate.All(ddData, ddLocks, ddCharacter, ddName);
+    // Start with current character
+    let newCharacter = { ...ddCharacter };
+
+    // Apply name from input (if not locked)
+    if (!ddLocks.name) {
+      newCharacter.Name = ddName || '';
+    }
+
+    // Apply Race (if not locked)
+    if (!ddLocks.race) {
+      if (selectedDDRace !== 'Random') {
+        newCharacter.Race = ddData.races[selectedDDRace];
+      } else {
+        newCharacter.Race = DarkDawnGenerate.Race(ddData.races, newCharacter, false);
+      }
+    }
+
+    // Apply Class (if not locked)
+    if (!ddLocks.class) {
+      if (selectedDDClass !== 'Random') {
+        newCharacter.Class = ddData.classes[selectedDDClass];
+      } else {
+        newCharacter.Class = DarkDawnGenerate.Class(ddData.classes, newCharacter, false);
+      }
+    }
+
+    // Apply Faction (if not locked)
+    if (!ddLocks.faction) {
+      if (selectedDDFaction !== 'Random') {
+        newCharacter.Faction = ddData.factions[selectedDDFaction];
+      } else {
+        newCharacter.Faction = DarkDawnGenerate.Faction(ddData.factions, newCharacter, false);
+      }
+    }
+
+    // Apply Faction Ability (if not locked)
+    if (!ddLocks.factionAbility) {
+      const faction = newCharacter.Faction;
+      if (faction) {
+        if (selectedDDFactionAbility !== 'Random') {
+          newCharacter.FactionAbility = faction.abilities.find(
+            ability => ability.name === selectedDDFactionAbility
+          );
+        } else {
+          newCharacter.FactionAbility = DarkDawnGenerate.FactionAbility(faction, newCharacter, false);
+        }
+      }
+    }
+
+    // Apply Deity (if not locked)
+    if (!ddLocks.deity) {
+      if (selectedDDDeity !== 'Random') {
+        newCharacter.Deity = ddData.deities[selectedDDDeity];
+      } else {
+        newCharacter.Deity = DarkDawnGenerate.Deity(ddData.deities, newCharacter, false);
+      }
+    }
+
+    // Apply Special Ability (if not locked)
+    if (!ddLocks.specialAbility) {
+      if (selectedDDSpecialAbility !== 'Random') {
+        newCharacter.SpecialAbility = ddData.specialAbilities[selectedDDSpecialAbility];
+      } else {
+        newCharacter.SpecialAbility = DarkDawnGenerate.SpecialAbility(
+          ddData.specialAbilities,
+          newCharacter,
+          false
+        );
+      }
+    }
+
     setDDCharacter(newCharacter);
 
     // Sync dropdown selections with generated character
+    if (newCharacter.Name) {
+      setDDName(newCharacter.Name);
+    }
     setSelectedDDRace(newCharacter.Race?.name || 'Random');
     setSelectedDDClass(newCharacter.Class?.name || 'Random');
     setSelectedDDFaction(newCharacter.Faction?.name || 'Random');
@@ -1090,29 +1165,24 @@ export default function CharacterGeneratorPage() {
                 {/* Name Input */}
                 <div className="mb-4">
                   <div className="flex items-center gap-3">
-                    <Label htmlFor="dd-name-input" className="font-bold">
-                      Name (optional):
+                    <Label htmlFor="dd-name-input" className="font-bold w-32">
+                      Name:
                     </Label>
-                    <div className="flex gap-2 items-center">
-                      <Input
-                        id="dd-name-input"
-                        type="text"
-                        placeholder="Character Name"
-                        className="w-[20rem]"
-                        value={ddName}
-                        onChange={(e) => setDDName(e.target.value)}
-                      />
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        onClick={() => toggleDDLock('name')}
-                      >
-                        {ddLocks.name ? <LockKeyholeIcon /> : <LockKeyholeOpenIcon />}
-                      </Button>
-                      <Button variant="secondary" onClick={handleApplyDDName}>
-                        Apply
-                      </Button>
-                    </div>
+                    <Input
+                      id="dd-name-input"
+                      type="text"
+                      placeholder="Character Name"
+                      className="w-[20rem]"
+                      value={ddName}
+                      onChange={(e) => setDDName(e.target.value)}
+                    />
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => toggleDDLock('name')}
+                    >
+                      {ddLocks.name ? <LockKeyholeIcon /> : <LockKeyholeOpenIcon />}
+                    </Button>
                   </div>
                 </div>
 
@@ -1141,9 +1211,6 @@ export default function CharacterGeneratorPage() {
                     >
                       {ddLocks.race ? <LockKeyholeIcon /> : <LockKeyholeOpenIcon />}
                     </Button>
-                    <Button variant="secondary" onClick={handleGenerateDDRace}>
-                      Generate
-                    </Button>
                   </div>
                 </div>
 
@@ -1171,9 +1238,6 @@ export default function CharacterGeneratorPage() {
                       onClick={() => toggleDDLock('faction')}
                     >
                       {ddLocks.faction ? <LockKeyholeIcon /> : <LockKeyholeOpenIcon />}
-                    </Button>
-                    <Button variant="secondary" onClick={handleGenerateDDFaction}>
-                      Generate
                     </Button>
                   </div>
                 </div>
@@ -1206,9 +1270,6 @@ export default function CharacterGeneratorPage() {
                     >
                       {ddLocks.factionAbility ? <LockKeyholeIcon /> : <LockKeyholeOpenIcon />}
                     </Button>
-                    <Button variant="secondary" onClick={handleGenerateDDFactionAbility}>
-                      Generate
-                    </Button>
                   </div>
                 </div>
 
@@ -1237,9 +1298,6 @@ export default function CharacterGeneratorPage() {
                     >
                       {ddLocks.deity ? <LockKeyholeIcon /> : <LockKeyholeOpenIcon />}
                     </Button>
-                    <Button variant="secondary" onClick={handleGenerateDDDeity}>
-                      Generate
-                    </Button>
                   </div>
                 </div>
 
@@ -1267,9 +1325,6 @@ export default function CharacterGeneratorPage() {
                       onClick={() => toggleDDLock('class')}
                     >
                       {ddLocks.class ? <LockKeyholeIcon /> : <LockKeyholeOpenIcon />}
-                    </Button>
-                    <Button variant="secondary" onClick={handleGenerateDDClass}>
-                      Generate
                     </Button>
                   </div>
                 </div>
@@ -1301,9 +1356,6 @@ export default function CharacterGeneratorPage() {
                       onClick={() => toggleDDLock('specialAbility')}
                     >
                       {ddLocks.specialAbility ? <LockKeyholeIcon /> : <LockKeyholeOpenIcon />}
-                    </Button>
-                    <Button variant="secondary" onClick={handleGenerateDDSpecialAbility}>
-                      Generate
                     </Button>
                   </div>
                 </div>
@@ -1747,6 +1799,14 @@ export default function CharacterGeneratorPage() {
                   Character Art Source
                 </a>
                 <br />
+                {/* Export to PDF Button - Only for Dark Dawn Simple Canvas */}
+                {gameSystem === 'darkdawn' && cardType === 'empty' && ddCharacter.Race && (
+                  <div className="flex justify-center mt-4">
+                    <Button onClick={() => exportDarkDawnToPDF(ddCharacter)} variant="default">
+                      Export to PDF
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
             <div id="plaintext" style={{ display: cardType === 'plaintext' ? 'block' : 'none' }}>
