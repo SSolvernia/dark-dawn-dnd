@@ -120,9 +120,8 @@ export default function CharacterGeneratorPage() {
 
   // Configuration state
   const [characterType, setCharacterType] = useState('either');
-  const [cardType, setCardType] = useState('personality'); // personality, characteristics, or plaintext
+  const [cardType, setCardType] = useState('summary'); // personality, characteristics, or plaintext
   const [uploadedImage, setUploadedImage] = useState(null); // Uploaded character image
-  const [canvasHeight, setCanvasHeight] = useState(792); // Dynamic canvas height
 
   // Dropdown selections
   const [selectedGender, setSelectedGender] = useState('Random');
@@ -217,16 +216,14 @@ export default function CharacterGeneratorPage() {
   }, [data, usedBooks]);
 
   /**
-   * Update canvas height based on game system and card type
+   * Calculate canvas height dynamically based on game system and card type
+   * Canvas height is memoized to avoid cascading renders
    */
-  useEffect(() => {
+  const canvasHeight = useMemo(() => {
     if (gameSystem === 'darkdawn' && (cardType === 'personality' || cardType === 'characteristics')) {
-      // Detailed mode for Dark Dawn - needs more space
-      setCanvasHeight(1400);
-    } else {
-      // Default height for simple mode or D&D
-      setCanvasHeight(792);
+      return 1400; // Detailed mode for Dark Dawn needs more space
     }
+    return 792; // Default height for simple mode or D&D
   }, [gameSystem, cardType]);
 
   /**
@@ -584,8 +581,12 @@ export default function CharacterGeneratorPage() {
         text += '\n';
       }
 
-      if (ddCharacter.FactionAbility) {
-        text += `Faction Ability: ${ddCharacter.FactionAbility}\n`;
+      if (ddCharacter.FactionAbility?.name) {
+        text += `Faction Ability: ${ddCharacter.FactionAbility.name}\n`;
+        if (ddCharacter.FactionAbility.description && ddCharacter.FactionAbility.description !== 'undefined') {
+          text += `  Description: ${ddCharacter.FactionAbility.description}\n`;
+        }
+        text += '\n';
       }
 
       return text;
@@ -676,7 +677,7 @@ export default function CharacterGeneratorPage() {
 
     const options = [{ value: 'Random', label: 'Random' }];
     faction.abilities.forEach((ability) => {
-      options.push({ value: ability, label: ability });
+      options.push({ value: ability.name, label: ability.name });
     });
 
     return options;
@@ -731,6 +732,14 @@ export default function CharacterGeneratorPage() {
 
     const newCharacter = DarkDawnGenerate.All(ddData, ddLocks, ddCharacter, ddName);
     setDDCharacter(newCharacter);
+
+    // Sync dropdown selections with generated character
+    setSelectedDDRace(newCharacter.Race?.name || 'Random');
+    setSelectedDDClass(newCharacter.Class?.name || 'Random');
+    setSelectedDDFaction(newCharacter.Faction?.name || 'Random');
+    setSelectedDDFactionAbility(newCharacter.FactionAbility?.name || 'Random');
+    setSelectedDDDeity(newCharacter.Deity?.name || 'Random');
+    setSelectedDDSpecialAbility(newCharacter.SpecialAbility?.name || 'Random');
   };
 
   /**
@@ -770,6 +779,8 @@ export default function CharacterGeneratorPage() {
     if (!ddLocks.factionAbility) {
       const newAbility = DarkDawnGenerate.FactionAbility(newFaction, ddCharacter, false);
       setDDCharacter((prev) => ({ ...prev, Faction: newFaction, FactionAbility: newAbility }));
+      // Update the dropdown selection to match the generated ability
+      setSelectedDDFactionAbility(newAbility?.name || 'Random');
     }
   };
 
@@ -789,11 +800,13 @@ export default function CharacterGeneratorPage() {
 
     let newAbility;
     if (selectedDDFactionAbility !== 'Random') {
-      // Use selected ability from dropdown
-      newAbility = selectedDDFactionAbility;
+      // Use selected ability from dropdown - find the full object by name
+      newAbility = faction.abilities.find(ability => ability.name === selectedDDFactionAbility);
     } else {
       // Generate random ability from faction
       newAbility = DarkDawnGenerate.FactionAbility(faction, ddCharacter, ddLocks.factionAbility);
+      // Update the dropdown selection to match the generated ability
+      setSelectedDDFactionAbility(newAbility?.name || 'Random');
     }
     setDDCharacter({ ...ddCharacter, FactionAbility: newAbility });
   };
@@ -853,6 +866,13 @@ export default function CharacterGeneratorPage() {
     setDDCharacter({ ...ddCharacter, SpecialAbility: newAbility });
   };
 
+  /**
+   * Apply name from input to character without regenerating other fields
+   */
+  const handleApplyDDName = () => {
+    setDDCharacter({ ...ddCharacter, Name: ddName });
+  };
+
   // Computed dropdown options for Dark Dawn
   const ddRaceOptions = useMemo(() => {
     return ddData ? getDDDropdownOptions(ddData.races) : [];
@@ -890,7 +910,7 @@ export default function CharacterGeneratorPage() {
 
     const options = [{ value: 'Random', label: 'Random' }];
     faction.abilities.forEach((ability) => {
-      options.push({ value: ability, label: ability });
+      options.push({ value: ability.name, label: ability.name });
     });
 
     return options;
@@ -1088,6 +1108,9 @@ export default function CharacterGeneratorPage() {
                         onClick={() => toggleDDLock('name')}
                       >
                         {ddLocks.name ? <LockKeyholeIcon /> : <LockKeyholeOpenIcon />}
+                      </Button>
+                      <Button variant="secondary" onClick={handleApplyDDName}>
+                        Apply
                       </Button>
                     </div>
                   </div>
@@ -1709,7 +1732,15 @@ export default function CharacterGeneratorPage() {
               </CardContent>
             </Card>
 
-            <div id="cardcontainer" style={{ display: cardType === 'plaintext' || cardType === 'summary' ? 'none' : 'block', justifyItems: 'center'}}>
+            <div id="cardcontainer" style={{
+              display: (
+                cardType === 'plaintext' ||
+                cardType === 'summary' ||
+                (gameSystem === 'darkdawn' && !ddCharacter.Race) ||
+                (gameSystem === 'dnd' && !character.Race)
+              ) ? 'none' : 'block',
+              justifyItems: 'center'
+            }}>
               <canvas ref={canvasRef} id="canvas" width="612" height={canvasHeight} className="dnd-canvas"></canvas>
               <div>
                 <a id="sourcelink" href="">
@@ -1795,13 +1826,17 @@ export default function CharacterGeneratorPage() {
                           )}
                         </details>
                       )}
-                      {ddCharacter.FactionAbility && (
-                        <div className="border rounded-lg p-3">
-                          <p className="font-bold">Faction Ability:</p>
-                          <p className="text-sm text-muted-foreground mt-1 ml-4">
-                            {ddCharacter.FactionAbility}
-                          </p>
-                        </div>
+                      {ddCharacter.FactionAbility?.name && (
+                        <details className="border rounded-lg p-3">
+                          <summary className="cursor-pointer font-bold">
+                            Faction Ability: {ddCharacter.FactionAbility.name}
+                          </summary>
+                          {ddCharacter.FactionAbility.description && ddCharacter.FactionAbility.description !== 'undefined' && (
+                            <p className="text-sm text-muted-foreground mt-2 ml-4">
+                              {ddCharacter.FactionAbility.description}
+                            </p>
+                          )}
+                        </details>
                       )}
                     </div>
                   </>

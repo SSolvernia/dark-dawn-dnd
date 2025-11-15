@@ -757,7 +757,7 @@ const CardRenderer = {
       { label: 'Faction', value: character.Faction?.name },
       { label: 'Deity', value: character.Deity?.name },
       { label: 'Special Ability', value: character.SpecialAbility?.name },
-      { label: 'Faction Ability', value: character.FactionAbility },
+      { label: 'Faction Ability', value: character.FactionAbility?.name },
     ];
 
     const labelWidth = 140;
@@ -923,21 +923,7 @@ const CardRenderer = {
     renderField('Faction', character.Faction?.name, character.Faction?.description);
     renderField('Deity', character.Deity?.name, character.Deity?.description);
     renderField('Special Ability', character.SpecialAbility?.name, character.SpecialAbility?.description);
-
-    // Faction Ability (just the string, no description)
-    if (character.FactionAbility) {
-      ctx.font = 'bold 15px Tahoma';
-      ctx.fillText('Faction Ability:', padding, yPos);
-      yPos += lineHeight;
-
-      ctx.font = '14px Tahoma';
-      const lines = this.multilineStringArray(ctx, String(character.FactionAbility), 10);
-
-      lines.forEach(line => {
-        ctx.fillText(line, padding + 10, yPos);
-        yPos += lineHeight;
-      });
-    }
+    renderField('Faction Ability', character.FactionAbility?.name, character.FactionAbility?.description);
   },
 
   /**
