@@ -1025,15 +1025,6 @@ export default function CharacterGeneratorPage() {
     <div className="char-gen-body">
       <div className="dnd-container">
         <div className={`dnd-content char-type-${characterType}`}>
-          {/* Navigation Links */}
-          <div style={{ textAlign: 'center' }}>
-            <a href="/dnd-reference">PC Options Reference</a> - <b>Character Generator</b> -{' '}
-            <a href="/dnd-magic-items">Magic Item Generator</a> -{' '}
-            <a href="/dnd-statblock">Statblock Generator</a>
-          </div>
-
-          <br />
-
           <h1>Random Character Generator</h1>
           <br />
 

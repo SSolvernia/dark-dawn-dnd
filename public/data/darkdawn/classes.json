@@ -1,42 +1,82 @@
 {
-  "Clerigo": {
-    "name": "Clerigo",
-    "description": "Curandero"
+  "Ecclesiastic": {
+    "name": "Ecclesiastic",
+    "role": "Healer",
+    "secondaryRole": "Buffer/Debuffer",
+    "mainStats": "Constitution | Control",
+    "description": "Class focused on Healing itself and its party members as well as providing different status ailments to both friend and foe. <br>Ecclesiastics are naturally Devoted to the Old deities, becoming more powerful by increasing their Resonance. <br>As Ecclesiastics continue to improve their talents, they’ll unlock more powerful spells that drastically alter the Ebb and flow of combat, turning entire zones of the battlefield into sanctified fields and even summoning directly the might of the Old Deities to help them in battle.",
+    "difficulty": "1"
   },
-  "Augwok": {
-    "name": "Augwok",
-    "description": "Daño cuerpo a cuerpo"
+  "Astrallist": {
+    "name": "Astrallist",
+    "role": "Fighter",
+    "secondaryRole": "Control | Buffer",
+    "mainStats": "Strength | Control",
+    "description": "Class focused in close-quarter combat. Its power varies depending on the actual Heavenly Body seen in the skies, requiring the player to adapt each combat to make the most of it. <br>Being these. <ul><li>Solaris</li><li>Mer Moon</li><li>Fer Moon</li><li>Eclipse</li></ul>Besides this some Astrallis may choose to adopt the Star of Vim. A special Heavenly Body that allows them to spend Energy for their abilities instead of Corruption. As Taegurs learn more about themselves and the Astralis becomes stronger, allowing them to change the current Heavenly Body to their liking",
+    "difficulty": "3"
   },
-  "Terre": {
-    "name": "Terre",
-    "description": "Daño cuerpo a cuerpo"
+  "Worldsculptor": {
+    "name": "Worldsculptor",
+    "role": "Control Caster",
+    "secondaryRole": "Buffer/Debuffer",
+    "mainStats": "Conduit | Control",
+    "description": "Class focused on battlefield manipulation and control. Worldsculptors manipulate the battlefield to obtain powerful effects that benefit or impair both him and his allies. As such, proper positioning, coordination and strategy are required to master the abilities of a Worldsculptor. <br>Commanding the very earth below them as they become more powerful, Worldsculptors become able to phase in and out entire Panoramas during combat that dramatically change how the ebb and flow of the battle goes.",
+    "difficulty": "4"
   },
-  "Ischknight": {
-    "name": "Ischknight",
-    "description": "Especial"
+  "Cipher Knight": {
+    "name": "Cipher Knight",
+    "role": "Fighter",
+    "secondaryRole": "Tank | Debuffer",
+    "mainStats": "Strength | Resistance | Protection",
+    "description": "Class focused on close-combat. Cipher Knights imbue powerful runes into their weapon to obtain special benefits during combat, using said runes to break both the physical and mental existence of their enemies to create Blank Runes, which they can then use for their abilities. <br>As they become more powerful, they learn how to have more runes at the same time in their weapon as well as unique ones that unlock a separate progression system that further empowers them. Making them formidable opponents and even more powerful allies.",
+    "difficulty": "3"
   },
-  "Inquisidor": {
-    "name": "Inquisidor",
-    "description": "Tanque"
+  "Inquisitor": {
+    "name": "Inquisitor",
+    "role": "Tank",
+    "secondaryRole": "Debuffer/Fighter",
+    "mainStats": "Constitution | Resistance | Protection",
+    "description": "Class centered in protection and frontline combat. Inquisitors are prejudiced devout Zealots that hunt and bring heretics and blasphemous to the “gods”. As such, they are one of the few classes that can directly know the level of Septima corruption that an enemy has and can even directly reduce it temporarily during combat. <br>Inquisitors face the incoming darkness in the frontline, protecting and upgrading both themselves as well as their allies, and as they become more skilled, they unlock powerful abilities that can immediately annihilate enemies at certain Septima levels.",
+    "difficulty": "2"
   },
   "Magnus": {
     "name": "Magnus",
-    "description": "Daño a distancia"
+    "role": "Damage Nuker",
+    "secondaryRole": "Control",
+    "mainStats": "Conduit | Control ",
+    "description": "Class centered around long-distance combat. Magnus are extremely powerful Astralists that use different “Suns” to modify their spells and apply powerful and versatile effects. <br>These being: <ul><li>Carnelian</li> <li>Cerulean</li> <li>Ochre</li> <li>Viridian</li></ul> As the suns constantly rotate during combat, Magnus has to always be prepared to adapt at a moment's notice during combat, always changing their strategies around which current suns are active. Yet as their mastery of the Astralis becomes greater, they learn to summon more than a single sun in combat. Magnus is also one of the few classes able to unlock two extra sets of Skills during a campaign, allowing them to learn spells from before the Dark Dawn.",
+    "difficulty": "5"
   },
-  "Celeste": {
-    "name": "Celeste",
-    "description": "Daño cuerpo a cuerpo"
+  "Gale Dancer": {
+    "name": "Gale Dancer",
+    "role": "Fighter",
+    "secondaryRole": "Control",
+    "mainStats": "Agility | Strength",
+    "description": "Class centered around close-combat. Gale Dancer are extremely fast and agile warriors that blaze through the battlefield delivering a flurry of attacks upon their enemies. Via pearls (Created by Compressing Clouds) they deliver mighty blows that target the vitals of their opponents as well as their Septima. As they become stronger, Gale Dancers learn of more efficient ways to manipulate Pearls across the battlefield, using them to blitz all across the field and moving/repositioning both enemies and allies alike.",
+    "difficulty": "3"
   },
-  "Guardabosques": {
-    "name": "Guardabosques",
-    "description": "Daño a distancia"
+  "Leadstorm Vanguard": {
+    "name": "Leadstorm Vanguard",
+    "role": "Fighter",
+    "secondaryRole": "Control",
+    "mainStats": "Control | Strength | Agility",
+    "description": "Class centered around long distance combat. Leadstorm Vanguards are mighty gunslingers that unleash barrage upon barrage of artillery fire upon the enemy. Known for their agile movement through the battlefield, they switch from weapon to weapon, blitzing through the battlefield as they puncture their enemies with gunfire. As they improve, they learn not only to quick-swap their weapons, but also change between different kinds of munitions that apply powerful effects to their attacks.",
+    "difficulty": "2"
   },
-  "Aruspice": {
-    "name": "Aruspice",
-    "description": "Daño a distancia"
+  "Godscar Herald": {
+    "name": "Godscar Herald",
+    "role": "Debuffer",
+    "secondaryRole": "Control | Summoner",
+    "mainStats": "Control | Conduit | Resistance | Protection",
+    "description": "Class centered around debuffing.<br> Godscard Heralds devote their entire life to the deities of the New Era, heralding their coming and blaspheming the teachings of the deities before the Dark Dawn. <br>Dealing with unknown powers, their bodies have morphed and contorted, their very souls leaving their body and encapsulated into a Grimoire that is chained to them at all times. <br>Their very voice, transmitted by the Grimoire, is used to call upon blasphemous words of an unknown language to cast curses, hexes and more upon their enemies. <br>As they let their soul be devoured more and more by these entities. Their body becomes a mere tool manipulated by the Grimoire, as it becomes the very essence of that person, invoking forbidden words that cause people to go insane just from mere hearing them.",
+    "difficulty": "3"
   },
-  "Acechatumbas": {
-    "name": "Acechatumbas",
-    "description": "Curandero"
+  "Forsaken": {
+    "name": "Forsaken",
+    "role": "Summoner",
+    "secondaryRole": "Debuffer",
+    "mainStats": "Control | Constitution",
+    "description": "Class centered around summoning creatures. <br>Forsakens dig the very ground beneath them to unearth corpses from the bloodshed that were waged across the land to summon powerful creatures to do his bidding. <br>These creatures, sometimes carrying the memory of their former selves, can be either versatile generals, bloodthirsty warriors, wise sages, mighty lords or even lowly peasants. But as they grow stronger, they learn to subdue or take advantage of the memory that these bodies carry with them, boosting them or even fusing them to create even more fearsome creatures.",
+    "difficulty": "2"
   }
 }

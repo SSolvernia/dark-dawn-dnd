@@ -72,3 +72,102 @@
     font-family: Arial, Helvetica, sans-serif;
   }
 }
+
+/* HTML Description Styles */
+.html-description {
+  line-height: 1.625;
+}
+
+.html-description p {
+  margin: 0.75rem 0;
+}
+
+.html-description p:first-child {
+  margin-top: 0;
+}
+
+.html-description p:last-child {
+  margin-bottom: 0;
+}
+
+.html-description ul,
+.html-description ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+.html-description ul {
+  list-style-type: disc;
+}
+
+.html-description ol {
+  list-style-type: decimal;
+}
+
+.html-description li {
+  margin: 0.25rem 0;
+}
+
+.html-description ul ul,
+.html-description ol ul {
+  list-style-type: circle;
+}
+
+.html-description ol ol,
+.html-description ul ol {
+  list-style-type: lower-alpha;
+}
+
+.html-description strong,
+.html-description b {
+  font-weight: 700;
+}
+
+.html-description em,
+.html-description i {
+  font-style: italic;
+}
+
+.html-description h1,
+.html-description h2,
+.html-description h3,
+.html-description h4,
+.html-description h5,
+.html-description h6 {
+  font-weight: 600;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.html-description h1 { font-size: 1.5rem; }
+.html-description h2 { font-size: 1.35rem; }
+.html-description h3 { font-size: 1.2rem; }
+.html-description h4 { font-size: 1.1rem; }
+.html-description h5 { font-size: 1rem; }
+.html-description h6 { font-size: 0.95rem; }
+
+.html-description br {
+  content: "";
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.html-description code {
+  background-color: hsl(var(--muted));
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.html-description pre {
+  background-color: hsl(var(--muted));
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+  margin: 0.75rem 0;
+}
+
+.html-description pre code {
+  background-color: transparent;
+  padding: 0;
+}

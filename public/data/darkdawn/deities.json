@@ -1,34 +1,90 @@
 {
   "Vat Gi": {
     "name": "Vat Gi",
-    "description": "Deidad portadora del fuego. Sus seguidores con voraces, exaltados, a veces hasta pierden la cordura fácilmente. Los seguidores de Vat gi se ven recompensados con un mayor ataque y hechizos que mejoran su eficiencia en el combate. Su devoción se profundiza con cada víctima que derroten en el campo de batalla."
+    "description": "Deity that carries the Flame. Their followers are voracious, wild and are known to lose their temper.",
+    "bonuses": [
+      {
+        "devotion": "For each 10 enemies defeated in combat, increase devotion by 1",
+        "effect": "+6 Resistance to Fire",
+        "fanaticism": ""
+      }
+    ]
   },
   "Vriu Vu": {
     "name": "Vri Vu",
-    "description": "Deidad portadora del Aire. Sus seguidores son serenos, pero ocultan un lado oscuro dentro de ellos. Ya que para ellos, no importa las consecuencias de lo que realicen, con tal de que les traiga el bien a ellos únicamente. Los seguidores de Vri Vu se ven recompensados con una mayor agilidad y hechizos de desplazamiento. Para profundizar su devoción, los seguidores de Vri Vu recurren a los iluminados de sus iglesias, los cuales les entregan encomendaciones que deben cumplir. realizando satisfactoriamente estas, profundizan su devoción."
+    "description": "Deity that carries the Wind. Their followers are superficially calm, but can suddenly burst out in a moment’s notice. ",
+        "bonuses": [
+      {
+        "devotion": "Seek out the devotion sites around the world, for each one found, increase devotion by 1",
+        "effect": "+6 Resistance to Air",
+        "fanaticism": ""
+      }
+    ]
   },
   "Vo Sil": {
     "name": "Vo Sil",
-    "description": "Deidad portadora del Agua. sus seguidores no son los de confiar, ya que en un momento pueden estar calmados y serios, y al siguiente desatar una tormenta. Debido a esto los demás pueblos tratan a aquellos que siguen a Vo Sil como tierra de locos desmedidos. Los seguidores de Vo Sil se ven recompensados con un mayor Zaub y hechizos que cambian el estado de sus aliados y enemigos"
+    "description": "Deity that carries the Currents. Their followers go with the flow in almost every situation, but can turn into a whirl of rage in a fit.",
+        "bonuses": [
+      {
+        "devotion": "Drink from the waters of the 10 seas, for each one drank, increase devotion by 1",
+        "effect": "+6 Resistance to Water.",
+        "fanaticism": ""
+      }
+    ]
   },
   "Vel Na": {
     "name": "Vel Na",
-    "description": "Deidad portadora de la Tierra. Sus seguidores tienden a mantenerse callados en la parte trasera del caos, pero cuando llega el momento, son los primeros en levantar la voz y ponerse al frente del problema. Los seguidores de Vel Na se ven recompensados con una mayor defensa y hechizos que los protegen a ellos y a sus aliados. Su devocion se profundiza ofreciendo cristales de Septima en los altares de piedra. Los cuales consiguen finalizando combates en los cuales ningún aliado haya muerto o recibido enormes cantidades de daño."
+    "description": "Deity that carries the Soil. Their followers are supportive and level-headed, thinking before acting, but do not tease them, for chaos ensues once a follower of Vel Na reaches breaking point.",
+        "bonuses": [
+      {
+        "devotion": "Prostate yourself upon the highest peaks of the world, for each one, increase your devotion by 1.",
+        "effect": "+6 Resistance to Earth.",
+        "fanaticism": ""
+      }
+    ]
   },
   "Vru Za": {
     "name": "Vru Za",
-    "description": "Deidad portadora de la Chispa. sus seguidores son alegres, dinámicos, casi infantiles. tienen mucha energía y no se cansan fácil. Son un buen aliado para tener en la mayoría de los casos, debido a su devoción, suelen ser los primeros en lanzarse directamente al combate. Los seguidores de Vru Za se ven recompensados con una mayor vitalidad y hechizos que reducen la eficiencia del enemigo y aumentan la velocidad de casteo de los hechizos. Para profundizar su devoción, los seguidores de Vru za ofrecen cristales de Septima en los altares de rayo. los cuales obtienen al completar los desafíos que su dios le presenta en combate."
+    "description": "Deity that carries the Spark. Their followers are hyperactive, a little bit crazy in the head as well as a bit out of the loop. You can always be sure that a follower of Vru Za will be the first one to launch themselves into battle or delve into a dungeon.",
+        "bonuses": [
+      {
+        "devotion": "Be the first to defeat an enemy in combat 3 times. For each time done, increase your devotion by 1",
+        "effect": "+6 Resistance to Lightning.",
+        "fanaticism": ""
+      }
+    ]
   },
   "Vi Zal": {
     "name": "Vi Zal",
-    "description": "Deidad portadora del Septima. La Septima es la energía divina que recorre el cuerpo de los entes mortales. les brinda vida y les permite existir. pero la Septima no es perfecta, ya que se puede manchar y condenar a aquel que la posea. Cuando esto pasa, el ente se convierte en un cristal que se le conoce como Altima. el Altima es la manifestación de un ser que mancho su Septima hasta no poder mas. sus seguidores se ven en el constante peligro de perder su propio ser. Pero son recompensados en gran medida. con mayor Resistencia y con hechizos que juegan con el Septima del enemigo y el propio. Su devoción aumenta al entregar cristales de Altima en los altares de Septima. los cuales consiguen al manchar la Septima del enemigo al máximo, hasta convertirlos en Altima"
+    "description": "Deity that carries the Septima. Followers of Vi Zal are varied and cannot be simply assigned into a group, as their body, soul and mind are always in a constant shift due to the effects of Septima.",
+        "bonuses": [
+      {
+        "devotion": "Sacrifice Septimils in any devotion site in the world, for each sacrificed, increase devotion by 1.",
+        "effect": "Reduce the effect of Septima Corruption by 2 per level",
+        "fanaticism": ""
+      }
+    ]
   },
   "Zum": {
     "name": "Zum",
-    "description": "Deidad portadora de la Osqura. La oscuridad está inerte en cada ente vivo. Solo hay pocos que pueden manejarla como es propiamente, y son aquellos que la aceptan en su ser. Aquellos que aceptan la Oscuridad en la totalidad en su ser. Manchan para siempre su Septima. estos seres no pueden convertirse en Altima.ya que su deidad les protege de alcanzar este estado. Los seguidores de esta Deidad no respetan la vida de los demás que lo rodean. Solo hay una verdad absoluta, y esa es la de su deidad. Ni siquiera los otros devotos son de importancia para el seguidor. Aquellos que manchen su Septima de esta manera se ven recompensados con mayor Control y hechizos que juegan con la vida de sus enemigos y de aquellos que ya pasaron a la otra vida. su devoción se profundiza entregando cuerpos en los altares podridos."
+    "description": "Deity that carries the Dawn.",
+        "bonuses": [
+      {
+        "devotion": "",
+        "effect": "+6 Resistance to Grixeh",
+        "fanaticism": ""
+      }
+    ]
   },
   "Zbe": {
     "name": "Zbe",
-    "description": "Deidad portadora de la Grixeh. La Luz está inerte en cada ente vivo, pero no es tan fuerte como la oscuridad que los consume poco a poco. Pero aquellos que dedican su vida a profetizar la palabra de Zbe, son capaces de detener esta latente oscuridad en su Septima y no caer en el abismo. Sus seguidores se ven recompensados con alto Control y hechizos que purifican el Septima propia y de sus aliados, brindandoles mejoras en el combate, y que causan gran daño a aquellos que siguen la Oscuridad. Su Devoción se profundiza purificando entes poseídos por la Oscuridad."
+    "description": "Deity that carries the Dusk",
+        "bonuses": [
+      {
+        "devotion": "",
+        "effect": "+6 Resistance to Osqura",
+        "fanaticism": ""
+      }
+    ]
   }
 }

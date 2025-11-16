@@ -1,51 +1,61 @@
 {
-  "La orden del verdadero Camino ": {
-    "name": "La orden del verdadero Camino ",
-    "description": "Nuestro destino ya ha sido escrito, cada paso que damos, cada palabra que recitamos, cada respiro que tomamos, ha sido predispuesto por nuestro creador. Nada existe por el azar, por eso debemos de escuchar y obedecer cada palabra entregada por nuestro líder Ulysses. Solo así podremos construir un futuro brillante, todos bajo la misma creencia. “un Verdadero mundo, un verdadero camino!”",
+  "The Order of the One True Way": {
+    "name": "The Order of the One True Way",
+    "description": "The Order of the One True Way believes that nothing has been left up to fate, and everything has been predestined somehow. If something were to happen, it is because it was already written in the Annals of Steel, their guiding codex written and propagated by their leader Ulysses. A deadly disease is something you can’t fight back, because if destiny already wrote that you should die, you will. If not, then that’s what destiny had in stores for you. The Order’s extreme ideologies instigate fear in the hearts of those that don’t belong to it, as their fanaticism has led to many of their commonfolk to frantically throw themselves to the frontlines with little to no disregard for their own well being. Due to that, the army of the Order is regarded as one of the fiercest to fight against. Their numbers being in the millions, usually winning the attrition war against armies with more proper war tactics. The Order extends through the land preaching the word of their teachings, guided by Ulysses strange mysticism and opportunistic knowledge, adding one more believer to their single one true way.",
     "abilities": [
       {
-        "name": "Predestinó",
-        "description": "Los seguidores de la orden del verdadero camino no son afectados por efectos al azar (Habilidades con la posibilidad de realizar algo extra EXM: Al golpear tiene una pequeña posibilidad de paralizar)"
+        "name": "Foretold",
+        "description": "The followers of the Order of the One True Way can’t be victim of random effects (Random effects count as Critical Hits, Critical Heals or spells that rely on dice rolls to apply altered status effects.)"
       }
     ]
   },
-  "La Legion de Acero": {
-    "name": "La Legion de Acero",
-    "description": "Los débiles han estado frente a nuestras puertas desde siempre, amenazandonos con sus falsas creencias y sus estúpidos ideales. Orar no hará nada para construir un futuro para cada uno, la única manera de traer orden a este mundo podrido es aplastando a cualquiera que se atraviese en nuestro camino. el General Tasker H. Bliss conoce bien sobre esto, su gran habilidad militar y visión conquistadora traerá a este mundo el verdadero orden que busca. Nuestros dioses están felices con cada cadáver que arda en la hoguera. “Acero y fuego hoy, Paz y libertad mañana!”",
+  "The Steel Horde": {
+    "name": "The Steel Horde",
+    "description": "The Steel Horde knows nothing more than the battlefield. Praying or doing tributes to higher powers bring nothing to the commonfolk, for while the other inferior ideologies of the world believe in Dead Gods and all-mighty powers, they know that only might makes right. Instead, they follow the writings and teaching of “The First General” a figure of yore that guided the fractured cities of old and brought them together to create the Steel Horde of today. Far from what they let see, the Steel Horde is unknowingly deeply religious, as their battle rituals do not differ from religious congregations, sacrificing prisoners and spilling blood before and after battle to “secure the battlefield” as they said. General Tasker H. A belic man, with no time for weaklings among his ranks leads the Steel Horde with Iron wit. And while he lacks any sense of human or moral decency, he compensates it with an incredible intellect, vision for war and masterful knowledge of combat tactics The Steel Horde has promised the people of the lands that they conquered unrivaled freedom to act and think, so long as they bear the Horde’s insignia and help the war-front to be constantly marching.",
     "abilities": [
       {
-        "name":"Señor de la Guerra",
-        "description": "Los seguidores de la Legión de acero se sienten en su hogar cuando están en territorio ajeno, peleando por los ideales de su general. Debido a esto, reciben una mejora de Ataque y defensa cuando combaten (2PT)"
+        "name":"Martial Prowless",
+        "description": "The followers of the Steel Horde feel at home whenever they are fighting for their homeland in foreign territory. As such, being in lands that are not owned by their Faction gives them a boost of +2 to each of their combat stats. This bonus is doubled when they are inside Horde’s owned lands"
       }
     ]
   },
-  "El Juzgado de los ocho caminos": {
-    "name": "El Juzgado de los ocho caminos",
-    "description": "No hay porqué sentirnos presos de una creencia, los dioses no son seres sedientos de sangre o sacrificios. No debemos de vivir orando para poder complacerlos, ellos están felices con que simplemente mencionemos su nombre, o hagamos una pequeña reverencia antes de combatir. Nuestro sabios líderes, descendientes de los sacerdotes que cayeron de las estrellas, llamados apropiadamente como cada deidad,  saben que no debemos vivir asustados de nuestros protectores, si no regocijarnos por poder vivir felizmente bajo la protección de cada uno de ellos. “Muchas creencias, un solo sueño”",
+  "The Court of Many Paths": {
+    "name": "The Court of Many Paths",
+    "description": "The Court of Many Paths doesn’t believe in the extreme ideals of the other Ideologies of the land. As they believe that each and every person should be able to prophesy what they believe in. As a society, the Court of many Paths doesn’t believe in human sacrifice either to appease the gods or for combat, and as such they have spent countless moons developing their magical efforts to create what they call “Marionettes”. Magically enhanced soldiers that fight their battles for them. The Court is always open to the commonfolk with no discrimination, as such, it’s normal to see many peregrines from every corner of the land, coming to the court’s leaders, the council in pro of wisdom and guidance.",
     "abilities": [
       {
-        "name": "Multipropósito",
-        "description": "Los seguidores del Juzgado de los ocho caminos son abiertos de mente, para ellos, los efectos de extra de los dioses no tienen efecto en ellos (EXM: Si se usa contra un seguidor del Fuego, causa daño extra)"
+        "name": "Open Mind",
+        "description": "The followers of the Court of Many Paths are an open minded alignment. As such, they are not affected by elemental reactions."
       }
     ]
   },
-  "Parroquia del Dios Falso": {
-    "name": "Parroquia del Dios Falso",
-    "description": "Seres superiores?, “Deidades?”, Ha, nada más que cuentos de hadas creados por aquellos sin cerebro. Es imposible creer que hay seres invisibles gigantes que dictan todo lo que hacemos día a día, una verdadera estupidez. “Milagros” Dices?. Acaso eres un idiota, la Séptima y el Altima son los verdaderos causantes de estos supuestos actos divinos. Nuestra Lunarca Malte entiende nuestro pensamiento. Es asi de simple, la gente maligna mancha su Séptima, hasta que finalmente su alma no es capaz de aguantarlo, convirtiéndose en Altima. Cuando esta última se deja sola su energía se libera y causa tus estupendos milagros. Espero que eso te lo haya dejado claro, es “Una vida libre de supersticiones”",
+  "Parish of the Fake Deity": {
+    "name": "Parish of the Fake Deity",
+    "description": "The Parish of the Fake Deity doesn't believe at all in any one deity. For you see, there’s always a logical explanation for every “Miracle” that happens on this land. With an ever-present air of superiority, the members of the Parish see those that believe in Magic and Deities as inferior in every sense, with their name even being a direct mockery of other ideologies. The Parish instead focuses on technological advance, for the control of Altima and Septima will finally move humanity to the future. As to them, what the ancient texts referred to asGods and Deities were just humanity before the Dark Dawn. Before humanity inexplicably lost access to their technological advances. The Parish isn’t regulated or led by any single person, working as a strict meritocracy that gives power and rights to those that strive the hardest to prove worthy in Pro of Humanity. As such, their highest figure of power constantly shifts between different individuals.",
     "abilities": [
       {
-        "name": "Ateo",
-        "description": "Los seguidores de la parroquia del Dios Falso no se ven afectados por habilidades o hechizos extra brindadas por los dioses en base a la devoción."
+        "name": "Non-Believer",
+        "description": "The followers of the Parish of the Fake Deity aren’t affected by Abilities or Skills given by “Outer powers”"
       }
     ]
   },
-  "Consulado de Tribulaciones": {
-    "name": "Consulado de Tribulaciones",
-    "description": "Ah… Se que no estas feliz conmigo, tu mundo se pudre lentamente y no hay nada que pueda hacer… He pecado, y debo ser castigado. Tranquilo mi iluminado, yo sé lo que debo hacer para pagar mi atrocidad. Mi cuerpo es su lienzo, mis manos su pincel, hagan con él lo que ustedes deseen.Mi señor, mi Demidios de tres caras, guieme por favor a una eternidad donde viva bajo el cuidado de mi dios. Haciéndolo feliz con cada centímetro de mi ser. sin importar que tan grande sea su petición",
+  "The Mass of Tribulations": {
+    "name": "The Mass of Tribulations",
+    "description": "The Mass of Tribulations is a fanatical organization that believes that only by punishing the flesh, being it their own or the flesh of the others will their god be happy.  When the flesh of others cannot be punished, instead they resort to self flagellation as a way to prove their faith to what they call the “Ablaze One” A mysterious entity that bears a crown decorated with three faces. The devouts of the Mass are subject to the judgment impaired by the current face of the Ablaze One. The cities of the Mass of Tribulations are a whiplash of wealth and poverty. With mighty Golden spires that extend as far as the eye can see surrounded by rotten and collapsing houses where their followers live.",
     "abilities": [
       {
-        "name": "Flagelación",
-        "description": "Los seguidores de el consulado de tribulaciones no se ven afectados por habilidades que jueguen con la Séptima propia, mas ellos se ven beneficiados de habilidades que aprovechan la Séptima de su enemigo."
+        "name": "Self Flagellation",
+        "description": "The followers of the Mass of Tribulations aren’t affected by abilities or skills that affect Septima. But they get stronger the lower their Septima is (+1 to each stat for each -10 Septima)"
+      }
+    ]
+  },
+  "The Zero Point": {
+    "name": "The Zero Point",
+    "description": "The Zero Point is a conglomeration of the five great Religious Parties of the land of Hyulgar. They aren’t guided by a single individual, but instead by a Senate with members of each Party, striving to find a common ground between all the ideologies that plague the land. So that one day, humanity may recover what they once lost.",
+    "abilities": [
+      {
+        "name": "",
+        "description": ""
       }
     ]
   }
